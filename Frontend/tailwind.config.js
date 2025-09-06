@@ -60,7 +60,7 @@ export default {
         'bounce-slow': 'bounce 3s infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'grid': 'grid 15s linear infinite',
-        'moveRight': 'moveRight 15s linear infinite'
+        'moveRight': 'moveRight 30s linear infinite'
       },
       keyframes: {
         rainbow: {
@@ -77,8 +77,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Google Sans', 'Inter', 'sans-serif'],
-        mono: ['Fira Code', 'monospace'],
+        sans: ['"Google Sans"', 'system-ui', 'sans-serif'],
+        mono: ['ui-monospace', 'monospace'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

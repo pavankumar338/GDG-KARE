@@ -73,41 +73,26 @@
   --accent-foreground: #202124;
 }
 
-/* Google Sans font */
-@font-face {
-  font-family: 'Google Sans';
-  src: url('/fonts/GoogleSans-Regular.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Google Sans';
-  src: url('/fonts/GoogleSans-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Google Sans';
-  src: url('/fonts/GoogleSans-Bold.woff2') format('woff2');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
+/* Using Google Fonts CDN instead of local files */
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Google Sans', sans-serif;
+  touch-action: pan-y;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-body {
+html, body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
   /* transition: background-color 0.3s ease, color 0.3s ease; */
 }
 

@@ -11,11 +11,11 @@ import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 
 const FooterContainer = styled.footer`
-  background: ${(props) => (props.isDark ? "#1a1a1a" : "var(--black)")};
-  color: ${(props) => (props.isDark ? "#f5f5f5" : "white")};
+  background: ${(props) => (props.$isDark ? "#1a1a1a" : "var(--black)")};
+  color: ${(props) => (props.$isDark ? "#f5f5f5" : "white")};
   padding: 3rem 2rem;
   border-top: 1px solid
-    ${(props) => (props.isDark ? "rgba(255, 255, 255, 0.1)" : "transparent")};
+    ${(props) => (props.$isDark ? "rgba(255, 255, 255, 0.1)" : "transparent")};
   box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1),
     0 -2px 4px -1px rgba(0, 0, 0, 0.06);
 `;
@@ -31,14 +31,14 @@ const FooterContent = styled.div`
 const FooterSection = styled.div`
   h3 {
     color: ${(props) =>
-      props.isDark ? "var(--light-blue)" : "var(--medium-blue)"};
+      props.$isDark ? "var(--light-blue)" : "var(--medium-blue)"};
     margin-bottom: 1rem;
     font-size: 1.2rem;
     font-weight: 600;
   }
 
   p {
-    color: ${(props) => (props.isDark ? "#a3a3a3" : "inherit")};
+    color: ${(props) => (props.$isDark ? "#a3a3a3" : "inherit")};
     line-height: 1.6;
   }
 `;
@@ -49,18 +49,34 @@ const SocialLinks = styled.div`
   margin-top: 1rem;
 `;
 
-const SocialIcon = styled(motion.a)`
-  color: ${(props) => (props.isDark ? "#a3a3a3" : "white")};
+const StyledSocialIcon = styled.a`
+  color: ${(props) => (props.$isDark ? "#a3a3a3" : "white")};
   font-size: 1.5rem;
 
   &:hover {
     color: ${(props) =>
-      props.isDark ? "var(--light-blue)" : "var(--medium-blue)"};
+      props.$isDark ? "var(--light-blue)" : "var(--medium-blue)"};
   }
 `;
 
-const QuickLink = styled(Link)`
-  color: ${(props) => (props.isDark ? "#a3a3a3" : "white")};
+const SocialIcon = ({ href, isDark, children, 'aria-label': ariaLabel }) => {
+  return (
+    <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
+      <StyledSocialIcon
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        isDark={isDark}
+        aria-label={ariaLabel}
+      >
+        {children}
+      </StyledSocialIcon>
+    </motion.div>
+  );
+};
+
+const StyledQuickLink = styled(Link)`
+  color: ${(props) => (props.$isDark ? "#a3a3a3" : "white")};
   text-decoration: none;
   display: block;
   margin-bottom: 0.5rem;
@@ -68,9 +84,19 @@ const QuickLink = styled(Link)`
 
   &:hover {
     color: ${(props) =>
-      props.isDark ? "var(--light-blue)" : "var(--medium-blue)"};
+      props.$isDark ? "var(--light-blue)" : "var(--medium-blue)"};
   }
 `;
+
+const QuickLink = ({ to, children, isDark }) => {
+  return (
+    <motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+      <StyledQuickLink to={to} $isDark={isDark}>
+        {children}
+      </StyledQuickLink>
+    </motion.div>
+  );
+};
 
 const QuickLinksList = styled.ul`
   list-style: none;
@@ -130,16 +156,16 @@ const Footer = () => {
   
 
   return (
-    <FooterContainer isDark={isDark}>
+    <FooterContainer $isDark={isDark}>
       <FooterContent>
-        <FooterSection isDark={isDark}>
+        <FooterSection $isDark={isDark}>
           <h3>GDG On Campus KARE</h3>
           <p>
             Empowering developers and fostering innovation in our campus
             community.
           </p>
         </FooterSection>
-        <FooterSection isDark={isDark}>
+        <FooterSection $isDark={isDark}>
           <h3>Quick Links</h3>
           <QuickLinksList>
             {quickLinks.map((link, index) => (
@@ -149,7 +175,7 @@ const Footer = () => {
                   as={motion.a}
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
-                  isDark={isDark}
+                  $isDark={isDark}
                 >
                   {link.name}
                 </QuickLink>
@@ -157,20 +183,15 @@ const Footer = () => {
             ))}
           </QuickLinksList>
         </FooterSection>
-        <FooterSection isDark={isDark}>
+        <FooterSection $isDark={isDark}>
           <h3>Connect With Us</h3>
           <SocialLinks>
             {socialLinks.map((social, index) => (
               <SocialIcon
                 key={index}
-                as={motion.a}
                 href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
                 aria-label={social.label}
-                isDark={isDark}
+                $isDark={isDark}
               >
                 <social.icon />
               </SocialIcon>
