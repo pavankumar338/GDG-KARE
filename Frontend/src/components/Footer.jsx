@@ -66,7 +66,7 @@ const SocialIcon = ({ href, isDark, children, 'aria-label': ariaLabel }) => {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        isDark={isDark}
+        $isDark={isDark}
         aria-label={ariaLabel}
       >
         {children}
@@ -90,7 +90,13 @@ const StyledQuickLink = styled(Link)`
 
 const QuickLink = ({ to, children, isDark }) => {
   return (
-    <motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+    <motion.div 
+      whileHover={{ x: 5 }} 
+      transition={{ 
+        duration: 0.2,
+        ease: [0.4, 0, 0.2, 1]
+      }}
+    >
       <StyledQuickLink to={to} $isDark={isDark}>
         {children}
       </StyledQuickLink>

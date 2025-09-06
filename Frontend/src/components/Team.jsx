@@ -344,9 +344,9 @@ const TeamMemberCard = ({ member }) => {
   const placeholderColor = nameLabelColor; // Use nameLabelColor for placeholder background
 
   return (
-    <div className="relative w-full max-w-sm mx-auto transform transition-all duration-300 hover:-translate-y-2">
+    <div className="relative w-full max-w-sm mx-auto transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
       <div 
-        className="relative p-6 rounded-3xl shadow-xl" // Increased shadow for main card
+        className="relative p-8 rounded-3xl shadow-xl" // Increased padding and shadow for main card
         style={{ backgroundColor: backgroundColor }}
       >
         {/* Stacked background layers */}
@@ -441,9 +441,9 @@ const TeamSection = () => {
       {/* Organizers Section */}
       <div className="mb-24">
         <h3 className="text-3xl font-bold mb-12 text-center text-[#4285F4]">Our Organizers</h3>
-        <div className="flex justify-center gap-16">
+        <div className="flex flex-col items-center space-y-8 md:space-y-0 md:flex-row md:flex-wrap md:justify-center md:gap-16">
           {organizers.map((member, index) => (
-            <div key={index} className="flex-none w-80">
+            <div key={index} className="w-full max-w-[320px] md:w-auto">
               <TeamMemberCard member={member} />
             </div>
           ))}
@@ -467,9 +467,9 @@ const TeamSection = () => {
       {/* Coordinators Section */}
       <div className="mt-24">
         <h3 className="text-3xl font-bold mb-12 text-center text-[#4285F4]">Our Coordinators</h3>
-        <div className="flex justify-center gap-16">
+        <div className="flex flex-col items-center space-y-8 md:space-y-0 md:flex-row md:flex-wrap md:justify-center md:gap-16">
           {coordinators.map((member, index) => (
-            <div key={index} className="flex-none w-80">
+            <div key={index} className="w-full max-w-[320px] md:w-auto">
               <TeamMemberCard member={member} />
             </div>
           ))}

@@ -337,6 +337,9 @@ const TeamMemberCard = ({ member }) => {
     darkGrey: '#202124' // Google Dark Grey for social icons background
   };
 
+  // Add margin bottom on mobile
+  const cardClasses = "mb-8 md:mb-0";
+
   // Safely access colors, providing an empty object as fallback if member.colors is null or undefined
   const memberColors = member.colors || {};
 
@@ -352,7 +355,7 @@ const TeamMemberCard = ({ member }) => {
   const placeholderColor = nameLabelColor; // Use nameLabelColor for placeholder background
 
   return (
-    <div className="relative w-full max-w-sm mx-auto transform transition-all duration-300 hover:-translate-y-2">
+    <div className={`relative w-full max-w-sm mx-auto transform transition-all duration-300 hover:-translate-y-2 ${cardClasses}`}>
       <div 
         className="relative p-6 rounded-3xl shadow-xl" // Increased shadow for main card
         style={{ backgroundColor: backgroundColor }}
@@ -470,7 +473,7 @@ const ImageCarousel = ({ images }) => {
   }, []);
 
   return (
-    <div className="w-full h-screen relative overflow-hidden">
+    <div className="w-full h-[100vh] md:h-screen relative overflow-hidden">
       {/* Hero Text Overlay with Framer Motion */}
       <motion.div 
         className="absolute inset-0 flex flex-col items-center justify-center z-30 text-white text-center px-4"
@@ -479,7 +482,7 @@ const ImageCarousel = ({ images }) => {
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <motion.h1 
-          className="text-5xl md:text-6xl font-bold mb-4 text-shadow"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-shadow"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -487,7 +490,7 @@ const ImageCarousel = ({ images }) => {
           GDG Kare
         </motion.h1>
         <motion.p 
-          className="text-xl md:text-2xl max-w-2xl text-shadow"
+          className="text-lg sm:text-xl md:text-2xl max-w-2xl text-shadow px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -502,7 +505,7 @@ const ImageCarousel = ({ images }) => {
           index === activeIndex && (
             <motion.div 
               key={index}
-              className="absolute inset-0"
+              className="absolute inset-0 h-full"
               initial={{ opacity: 0, scale: 1.1 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
@@ -511,7 +514,7 @@ const ImageCarousel = ({ images }) => {
               <img 
                 src={image} 
                 alt={`Team Event ${index + 1}`} 
-                className="h-full w-full object-cover object-center"
+                className="h-full w-full object-cover object-center bg-black"
               />
               <div className="absolute inset-0 bg-black opacity-40"></div>
             </motion.div>
@@ -520,13 +523,13 @@ const ImageCarousel = ({ images }) => {
       </AnimatePresence>
       
       {/* Navigation arrows with Framer Motion */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 md:px-8 z-30">
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2 sm:px-4 md:px-8 z-30">
         <motion.button
           onClick={() => {
             goToSlide((activeIndex - 1 + images.length) % images.length);
             resetTimer();
           }}
-          className="bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all"
+          className="bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-all shadow-lg"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Previous slide"
@@ -552,7 +555,7 @@ const ImageCarousel = ({ images }) => {
       </div>
       
       {/* Navigation dots with Framer Motion */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-30">
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-30">
         {images.map((_, index) => (
           <motion.button
             key={index}
@@ -560,7 +563,7 @@ const ImageCarousel = ({ images }) => {
               goToSlide(index);
               resetTimer();
             }}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 shadow-md ${
               index === activeIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/70'
             }`}
             whileHover={{ scale: 1.2 }}
@@ -742,18 +745,18 @@ const TeamSection = () => {
         
         {/* Organizers Section with Framer Motion */}
         <motion.div 
-          className="mb-24"
+          className="mb-24 flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
           <h3 className="text-3xl font-bold mb-12 text-center text-[#4285F4]">Our Organizers</h3>
-          <div className="flex justify-center gap-16">
+          <div className="flex flex-col items-center space-y-8 md:space-y-0 md:flex md:flex-row md:flex-wrap md:justify-center md:gap-12">
             {organizers.map((member, index) => (
               <motion.div 
                 key={index} 
-                className="flex-none w-80"
+                className="w-full max-w-[320px] md:w-auto md:flex-none"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -792,18 +795,18 @@ const TeamSection = () => {
 
         {/* Coordinators Section with Framer Motion */}
         <motion.div 
-          className="mt-24"
+          className="mt-24 flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
           <h3 className="text-3xl font-bold mb-12 text-center text-[#4285F4]">Our Coordinators</h3>
-          <div className="flex justify-center gap-16">
+          <div className="flex flex-col items-center space-y-8 md:space-y-0 md:flex md:flex-row md:flex-wrap md:justify-center md:gap-12">
             {coordinators.map((member, index) => (
               <motion.div 
                 key={index} 
-                className="flex-none w-80"
+                className="w-full max-w-[320px] md:w-auto md:flex-none"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
