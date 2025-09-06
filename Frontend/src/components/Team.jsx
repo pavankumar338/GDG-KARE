@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Twitter, Linkedin, Github, Instagram } from 'lucide-react';
 
 const team = [
@@ -11,27 +11,19 @@ const team = [
       github: "#"
     },
     colors: {
-      background: '#4285F4', // Blue
-      border1: '#EA4335',    // Red
-      border2: '#FBBC04',    // Yellow
-      roleLabel: '#FBBC04',  // Yellow
-      nameLabel: '#4285F4'   // Blue
+      border1: '#4285f4'       // Core Blue for card
     }
   },
   {
-    name: "Thanuja Thulasi",
+    name: "Pavan Kumar",
     role: "Co-organizer",
-    image: "https://res.cloudinary.com/startup-grind/image/upload/c_fill,w_250,h_250,g_center/c_fill,dpr_2.0,f_auto,g_center,q_auto:good/v1/gcs/platform-data-goog/avatars/thanuja_thulasi.jpeg",
+    image: "Copy of GDG-Professionals-Social-PhotoFrame-Blue.jpg",
     socials: {
       linkedin: "#",
       github: "#"
     },
     colors: {
-      background: '#EA4335', // Red
-      border1: '#FBBC04',    // Yellow
-      border2: '#34A853',    // Green
-      roleLabel: '#34A853',  // Green
-      nameLabel: '#EA4335'   // Red
+      border1: '#ea4335'       // Core Red for card
     }
   },
   {
@@ -43,11 +35,7 @@ const team = [
       github: "#"
     },
     colors: {
-      background: '#FBBC04', // Yellow
-      border1: '#34A853',    // Green
-      border2: '#4285F4',    // Blue
-      roleLabel: '#4285F4',  // Blue
-      nameLabel: '#FBBC04'   // Yellow
+      border1: '#f9ab00'       // Core Yellow for card
     }
   },
   {
@@ -59,11 +47,9 @@ const team = [
       github: "#"
     },
     colors: {
-      background: '#34A853', // Green
-      border1: '#4285F4',   // Blue
-      border2: '#EA4335',    // Red
-      roleLabel: '#EA4335',  // Red
-      nameLabel: '#34A853'   // Green
+      border1: '#34a853',       // Core Green for background
+      roleLabel: '#ffffff',     // White for text
+      nameLabel: '#ffffff'      // White for text
     }
   },
   {
@@ -75,11 +61,7 @@ const team = [
       github: "#"
     },
     colors: {
-      background: '#4285F4', // Blue
-      border1: '#34A853',    // Green
-      border2: '#FBBC04',    // Yellow
-      roleLabel: '#FBBC04',  // Yellow
-      nameLabel: '#EA4335'   // Red
+      border1: '#4285f4'       // Core Blue for card
     }
   },
   {
@@ -91,11 +73,7 @@ const team = [
       github: "#"
     },
     colors: {
-      background: '#EA4335', // Red
-      border1: '#4285F4',    // Blue
-      border2: '#34A853',    // Green
-      roleLabel: '#34A853',  // Green
-      nameLabel: '#FBBC04'   // Yellow
+      border1: '#ea4335'       // Core Red for card
     }
   },
   {
@@ -107,11 +85,7 @@ const team = [
       github: "#"
     },
     colors: {
-      background: '#FBBC04', // Yellow
-      border1: '#EA4335',    // Red
-      border2: '#4285F4',    // Blue
-      roleLabel: '#4285F4',  // Blue
-      nameLabel: '#34A853'   // Green
+      border1: '#4285f4'       // Core Blue for card
     }
   },
   {
@@ -139,11 +113,7 @@ const team = [
       github: "#"
     },
     colors: {
-      background: '#4285F4', // Blue
-      border1: '#EA4335',    // Red
-      border2: '#FBBC04',    // Yellow
-      roleLabel: '#FBBC04',  // Yellow
-      nameLabel: '#34A853'   // Green
+      border1: '#4285f4'       // Core Blue for card
     }
   },
   {
@@ -155,11 +125,7 @@ const team = [
       github: "#"
     },
     colors: {
-      background: '#EA4335', // Red
-      border1: '#34A853',    // Green
-      border2: '#4285F4',    // Blue
-      roleLabel: '#4285F4',  // Blue
-      nameLabel: '#FBBC04'   // Yellow
+      border1: '#ea4335'       // Core Red for card
     }
   },
   {
@@ -171,11 +137,7 @@ const team = [
       github: "#"
     },
     colors: {
-      background: '#FBBC04', // Yellow
-      border1: '#4285F4',    // Blue
-      border2: '#34A853',    // Green
-      roleLabel: '#34A853',  // Green
-      nameLabel: '#EA4335'   // Red
+      border1: '#f9ab00'       // Core Yellow for card
     }
   },
   {
@@ -187,11 +149,7 @@ const team = [
       github: "#"
     },
     colors: {
-      background: '#34A853', // Green
-      border1: '#FBBC04',   // Yellow
-      border2: '#EA4335',    // Red
-      roleLabel: '#EA4335',  // Red
-      nameLabel: '#4285F4'   // Blue
+      border1: '#34a853'       // Core Green for card
     }
   },
   {
@@ -321,46 +279,56 @@ const getInitials = (name) => {
 };
 
 const TeamMemberCard = ({ member }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
   const gdgColors = {
-    blue: '#4285F4',
-    red: '#EA4335',
-    yellow: '#FBBC04',
-    green: '#34A853',
-    darkGrey: '#202124' // Google Dark Grey for social icons background
+    // Core Colors
+    blue: '#4285f4',
+    green: '#34a853',
+    yellow: '#f9ab00',
+    red: '#ea4335',
+    
+    // Halftones
+    blueHalf: '#57caff',
+    greenHalf: '#5cdb6d',
+    yellowHalf: '#ffd427',
+    redHalf: '#ff7daf',
+    
+    // Pastels
+    bluePastel: '#c3ecf6',
+    greenPastel: '#ccf6c5',
+    yellowPastel: '#ffe7a5',
+    redPastel: '#f8d8d8',
+    
+    // Grayscale
+    offWhite: '#f0f0f0',
+    black: '#1e1e1e',
+
+    // Selected/Hover state background
+    selectedBg: '#1e1e1e' // Using black02 for selected state
   };
 
   // Safely access colors, providing an empty object as fallback if member.colors is null or undefined
   const memberColors = member.colors || {};
 
-  // Provide default colors for each property if they are missing
-  // Using slightly adjusted opacities based on visual analysis of the image
-  const backgroundColor = memberColors.background || gdgColors.blue + '15'; // Slightly more opaque
-  const border1Color = memberColors.border1 || gdgColors.red + '25'; // Slightly more opaque
-  const border2Color = memberColors.border2 || gdgColors.green + '25'; // Slightly more opaque
-  const roleLabelColor = memberColors.roleLabel || gdgColors.yellow + 'F2'; // ~95% opacity
-  const nameLabelColor = memberColors.nameLabel || gdgColors.blue + 'E6'; // ~90% opacity
-  const socialIconBg = gdgColors.darkGrey;
-
-  const placeholderColor = nameLabelColor; // Use nameLabelColor for placeholder background
+  // Use single color for background and white for text
+  const backgroundColor = memberColors.border1 || gdgColors.blue;
+  const textColor = '#ffffff';
+  const socialIconBg = backgroundColor;
 
   return (
-    <div className="relative w-full max-w-sm mx-auto transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+    <div 
+      className="relative w-full max-w-sm mx-auto transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+    >
       <div 
-        className="relative p-8 rounded-3xl shadow-xl" // Increased padding and shadow for main card
-        style={{ backgroundColor: backgroundColor }}
+        className="relative p-8 rounded-3xl shadow-xl transition-transform duration-300" 
+        style={{ 
+          backgroundColor: backgroundColor,
+          color: '#fff'
+        }}
       >
-        {/* Stacked background layers */}
-        <div 
-          className="absolute inset-0 -rotate-6 rounded-3xl shadow-lg" // Maintained shadow for layers
-          style={{ backgroundColor: border1Color, zIndex: -2 }}
-        />
-        <div 
-          className="absolute inset-0 rotate-3 rounded-3xl shadow-lg" // Maintained shadow for layers
-          style={{ backgroundColor: border2Color, zIndex: -1 }}
-        />
-        
         {/* Card content */}
-        <div className="relative z-10">
+        <div className="relative">
           {/* Image or Placeholder */}
           <div className="relative">
             {member.image ? (
@@ -377,7 +345,7 @@ const TeamMemberCard = ({ member }) => {
                 style={{
                   width: '100%',
                   height: '16rem', // h-64 is 16rem
-                  backgroundColor: placeholderColor
+                  backgroundColor: backgroundColor
                 }}
               >
                 {getInitials(member.name)}
@@ -385,8 +353,7 @@ const TeamMemberCard = ({ member }) => {
             )}
             {/* Role Label */}
             <div 
-              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-full shadow-md text-sm font-semibold text-gray-800 whitespace-nowrap"
-              style={{ backgroundColor: roleLabelColor }}
+              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap bg-white text-black"
             >
               {member.role}
             </div>
@@ -395,8 +362,7 @@ const TeamMemberCard = ({ member }) => {
           {/* Name Label */}
           <div className="mt-8 text-center relative z-10">
              <div
-               className="inline-block px-4 py-2 rounded-full shadow-md text-lg font-bold whitespace-nowrap"
-               style={{ backgroundColor: nameLabelColor }}
+               className="inline-block px-4 py-2 text-lg font-bold whitespace-nowrap text-white"
              >
                {member.name}
              </div>

@@ -100,6 +100,18 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { isDark, setIsDark } = useTheme();
 
+  // Disable body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileOpen]);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
