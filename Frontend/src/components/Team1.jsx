@@ -473,16 +473,16 @@ const ImageCarousel = ({ images }) => {
   }, []);
 
   return (
-    <div className="w-full h-[100vh] md:h-screen relative overflow-hidden">
+    <div className="w-full h-[60vh] md:h-screen relative overflow-hidden bg-black">
       {/* Hero Text Overlay with Framer Motion */}
       <motion.div 
-        className="absolute inset-0 flex flex-col items-center justify-center z-30 text-white text-center px-4"
+        className="absolute inset-0 flex flex-col items-center justify-center z-30 text-white text-center px-4 bg-black/40"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <motion.h1 
-          className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-shadow"
+          className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-6 text-shadow-lg"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -490,7 +490,7 @@ const ImageCarousel = ({ images }) => {
           GDG Kare
         </motion.h1>
         <motion.p 
-          className="text-lg sm:text-xl md:text-2xl max-w-2xl text-shadow px-4"
+          className="text-sm sm:text-base md:text-xl lg:text-2xl max-w-2xl text-shadow-lg px-4 font-medium"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -505,24 +505,53 @@ const ImageCarousel = ({ images }) => {
           index === activeIndex && (
             <motion.div 
               key={index}
-              className="absolute inset-0 h-full"
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.5 }}
+              className="absolute inset-0 h-full w-full"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.7 }}
             >
               <img 
                 src={image} 
                 alt={`Team Event ${index + 1}`} 
-                className="h-full w-full object-cover object-center bg-black"
+                className="h-full w-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-black opacity-40"></div>
             </motion.div>
           )
         ))}
       </AnimatePresence>
       
-      {/* Navigation arrows with Framer Motion */}
+      {/* Minimal Navigation arrows with Framer Motion */}
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-3 md:px-6 z-30 pointer-events-none">
+        <motion.button
+          onClick={() => {
+            goToSlide((activeIndex - 1 + images.length) % images.length);
+            resetTimer();
+          }}
+          className="bg-black/30 backdrop-blur-sm text-white/90 p-2 rounded-full transition-all shadow-lg pointer-events-auto hover:bg-black/50"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Previous slide"
+        >
+          <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </motion.button>
+        <motion.button
+          onClick={() => {
+            goToSlide((activeIndex + 1) % images.length);
+            resetTimer();
+          }}
+          className="bg-black/30 backdrop-blur-sm text-white/90 p-2 rounded-full transition-all shadow-lg pointer-events-auto hover:bg-black/50"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Next slide"
+        >
+          <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </motion.button>
+      </div>      {/* Navigation arrows with Framer Motion */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2 sm:px-4 md:px-8 z-30">
         <motion.button
           onClick={() => {
@@ -554,8 +583,8 @@ const ImageCarousel = ({ images }) => {
         </motion.button>
       </div>
       
-      {/* Navigation dots with Framer Motion */}
-      <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-30">
+      {/* Minimal Navigation dots with Framer Motion */}
+      <div className="absolute bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30 bg-black/20 backdrop-blur-sm rounded-full px-2 py-1.5 md:px-3 md:py-2">
         {images.map((_, index) => (
           <motion.button
             key={index}
@@ -563,8 +592,8 @@ const ImageCarousel = ({ images }) => {
               goToSlide(index);
               resetTimer();
             }}
-            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 shadow-md ${
-              index === activeIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/70'
+            className={`w-1 h-1 md:w-2 md:h-2 rounded-full transition-all duration-300 ${
+              index === activeIndex ? 'bg-white scale-110' : 'bg-white/40 hover:bg-white/60'
             }`}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
