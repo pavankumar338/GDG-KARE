@@ -55,7 +55,7 @@ const team = [
   {
     name: "Arunkumar S",
     role: "Web Developer",
-    image: "public/arunkumar_s_NpHXYnv.webp",
+    image: "arunkumar_s_NpHXYnv.webp",
     socials: {
       linkedin: "#",
       github: "#"
@@ -67,7 +67,7 @@ const team = [
   {
     name: "Suresh Kumar G",
     role: "Web Developer",
-    image: "public/suresh_kumar_g_7C1LCFI.webp",
+    image: "suresh_kumar_g_7C1LCFI.webp",
     socials: {
       linkedin: "#",
       github: "#"
@@ -79,7 +79,7 @@ const team = [
   {
     name: "Manoj Hariharan R",
     role: "Android Development Lead",
-    image: "public/manoj_hariharan_r_xUNY62k.webp",
+    image: "manoj_hariharan_r_xUNY62k.webp",
     socials: {
       linkedin: "#",
       github: "#"
@@ -91,7 +91,7 @@ const team = [
   {
     name: "DHATSHINAMOORTHY R",
     role: "Android Developer",
-    image: "public/dhatshinamoorthy_r.webp",
+    image: "dhatshinamoorthy_r.webp",
     socials: {
       linkedin: "#",
       github: "#"
@@ -107,7 +107,7 @@ const team = [
   {
     name: "SRAVANTHI U",
     role: "Content Writer",
-    image: "public/sravanthi_u_T4DNmp9.webp",
+    image: "sravanthi_u_T4DNmp9.webp",
     socials: {
       linkedin: "#",
       github: "#"
@@ -119,7 +119,7 @@ const team = [
   {
     name: "NAVEEN S",
     role: "Machine Learning Lead",
-    image: "public/naveen_s.webp",
+    image: "naveen_s.webp",
     socials: {
       linkedin: "#",
       github: "#"
@@ -131,7 +131,7 @@ const team = [
   {
     name: "Hitesh Kumar Kothapalli",
     role: "DevOps Lead",
-    image: "public/hitesh_kumar_kothapalli.webp",
+    image: "hitesh_kumar_kothapalli.webp",
     socials: {
       linkedin: "#",
       github: "#"
@@ -143,7 +143,7 @@ const team = [
   {
     name: "Barnes Samuel",
     role: "Media Team",
-    image: "public/barnes_samuel.webp",
+    image: "barnes_samuel.webp",
     socials: {
       linkedin: "#",
       github: "#"
@@ -155,7 +155,7 @@ const team = [
   {
     name: "Bharathi Ankamreddy",
     role: "Social Media Lead",
-    image: "public/bharathi_ankamreddy.webp",
+    image: "bharathi_ankamreddy.webp",
     socials: {
       linkedin: "#",
       github: "#"
@@ -171,7 +171,7 @@ const team = [
   {
     name: "Divya Sri Digamarthi",
     role: "Cloud Computing Lead",
-    image: "public/divya_sri_digamarthi.webp",
+    image: "divya_sri_digamarthi.webp",
     socials: {
       linkedin: "#",
       github: "#"
@@ -187,7 +187,7 @@ const team = [
   {
     name: "Krishna Vineeth Gubba",
     role: "Coordinator",
-    image: "public/gubba_v_sesha_sai_krishna_vineeth.webp",
+    image: "gubba_v_sesha_sai_krishna_vineeth.webp",
     socials: {
       linkedin: "#",
       github: "#"
@@ -203,7 +203,7 @@ const team = [
   {
     name: "Poojith reddy Menthem",
     role: "Coordinator",
-    image: "public/poojith_reddy_menthem_4pB2x3v.webp",
+    image: "poojith_reddy_menthem_4pB2x3v.webp",
     socials: {
       linkedin: "#",
       github: "#"
@@ -219,7 +219,7 @@ const team = [
   {
     name: "BALAJI N",
     role: "Coordinator",
-    image: "public/balaji_.n_bzhKrFH.webp",
+    image: "balaji_.n_bzhKrFH.webp",
     socials: {
       linkedin: "#",
       github: "#"

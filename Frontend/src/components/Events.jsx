@@ -9,6 +9,7 @@ const events = [
     image: "/Copy of GDG24 Signage Poster - Blue.jpg",
     category: "Innovation",
     attendees: "150+"
+    
   },
   {
     title: "Study Jams Session - 2",
@@ -59,8 +60,8 @@ const Events = () => {
     <div className="min-h-screen bg-white dark:bg-[#1A1A1A]">
       {/* Events Carousel Section */}
       <div className="bg-white dark:bg-[#1A1A1A] py-16">
-        <div className="w-full">
-          <h2 className="text-5xl font-bold text-center mb-16 text-gray-900 dark:text-white py-8">Past Events</h2>
+        <div className="w-full max-w-[1440px] mx-auto">
+          <h2 className="text-5xl font-bold text-center mb-16 text-black dark:text-gray-100 py-8">Past Events</h2>
           
           <div className="relative">
             <div className="overflow-hidden">
@@ -74,31 +75,43 @@ const Events = () => {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <div className="flex flex-col lg:flex-row gap-8 items-start max-w-7xl mx-auto">
+                    <div className="flex flex-col lg:flex-row gap-8 items-start max-w-[1440px] mx-auto">
                       <div className="w-full lg:w-1/2">
                         <div className="aspect-[4/5] relative">
                           <img
                             src={event.image}
                             alt={event.title}
-                            className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-xl"
+                            className="absolute inset-0 w-full h-full object-cover rounded-lg"
                           />
                         </div>
                       </div>
                       <div className="w-full lg:w-1/2 px-6 space-y-8">
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
-                          <h3 className="text-4xl font-bold text-gray-900 dark:text-white">{event.title}</h3>
+                          <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-100">{event.title}</h3>
                           <span className="bg-[#1E88E5] text-white px-4 py-2 rounded-full font-medium text-lg">
                             {event.category}
                           </span>
                         </div>
                         <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed">{event.description}</p>
                         <div className="flex items-center gap-6">
-                          <span className="text-xl text-gray-700 dark:text-gray-300 font-medium">{event.date}</span>
-                          <span className="text-xl text-gray-700 dark:text-gray-300">
+                          <span className="text-xl text-gray-900 dark:text-gray-100 font-medium">{event.date}</span>
+                          <span className="text-xl text-gray-900 dark:text-gray-100">
                             <i className="fas fa-users mr-2"></i>
                             {event.attendees} Attended
                           </span>
                         </div>
+                        {/* Read More Button */}
+                        <a 
+                          href="https://gdg.community.dev/gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india/" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="mt-4 px-6 py-2 bg-[#1E88E5] hover:bg-[#1976D2] text-white rounded-full transition-all duration-300 flex items-center gap-2 text-lg font-medium w-fit"
+                        >
+                          Read More
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                          </svg>
+                        </a>
                       </div>
                     </div>
                   </motion.div>
@@ -108,18 +121,18 @@ const Events = () => {
             
             {/* Carousel Controls */}
             <button
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#1E88E5] p-4 rounded-full shadow-xl hover:bg-[#1a77cc] transition-all"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-4 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"
               onClick={prevSlide}
             >
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-gray-900 dark:text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#1E88E5] p-4 rounded-full shadow-xl hover:bg-[#1a77cc] transition-all"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-4 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"
               onClick={nextSlide}
             >
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-gray-900 dark:text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -130,7 +143,7 @@ const Events = () => {
                 <button
                   key={index}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    currentSlide === index ? 'bg-[#1E88E5] w-6' : 'bg-gray-400 dark:bg-gray-600'
+                    currentSlide === index ? 'bg-[#1E88E5] w-6' : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                   onClick={() => setCurrentSlide(index)}
                 />
