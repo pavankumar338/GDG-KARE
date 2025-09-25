@@ -131,7 +131,7 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`w-full z-[1000] transition-all duration-300 shadow-md bg-white dark:bg-black dark:shadow-lg py-3 sm:py-4 px-4 sm:px-8 ${
+      className={`w-full z-[1002] transition-all duration-300 shadow-md bg-white dark:bg-black dark:shadow-lg py-3 sm:py-4 px-4 sm:px-8 ${
         isScrolled ? 'fixed top-0 left-0 bg-white/90 dark:bg-black/90 backdrop-blur-sm' : ''
       }`}
     >
@@ -237,23 +237,23 @@ const Navbar = () => {
           </motion.button>
           
           <button
-            className="flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+            className="relative flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 z-[1001]"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle navigation menu"
           >
             <span 
               className={`block w-6 h-0.5 bg-gray-700 dark:bg-gray-200 rounded transition-all duration-300 ${
-                mobileOpen ? 'transform rotate-45 translate-y-1.5' : 'mb-1.5'
+                mobileOpen ? 'transform rotate-45 translate-y-0.5' : ''
+              }`}
+            />
+            <span 
+              className={`block w-6 h-0.5 bg-gray-700 dark:bg-gray-200 rounded transition-all duration-300 my-1 ${
+                mobileOpen ? 'opacity-0' : ''
               }`}
             />
             <span 
               className={`block w-6 h-0.5 bg-gray-700 dark:bg-gray-200 rounded transition-all duration-300 ${
-                mobileOpen ? 'opacity-0' : 'mb-1.5'
-              }`}
-            />
-            <span 
-              className={`block w-6 h-0.5 bg-gray-700 dark:bg-gray-200 rounded transition-all duration-300 ${
-                mobileOpen ? 'transform -rotate-45 -translate-y-1.5' : ''
+                mobileOpen ? 'transform -rotate-45 -translate-y-0.5' : ''
               }`}
             />
           </button>
@@ -262,9 +262,18 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       <motion.div
-        className={`fixed inset-0 z-[999] flex items-center justify-center md:hidden ${
+        className={`fixed inset-0 top-0 left-0 right-0 bottom-0 z-[1003] flex items-center justify-center md:hidden ${
           mobileOpen ? 'pointer-events-auto' : 'pointer-events-none'
         }`}
+        style={{ 
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100vw',
+          height: '100vh'
+        }}
         initial={false}
         animate={{
           opacity: mobileOpen ? 1 : 0,
@@ -276,7 +285,16 @@ const Navbar = () => {
       >
         {/* Backdrop */}
         <motion.div
-          className="absolute inset-0 bg-white/95 dark:bg-black/95 backdrop-blur-sm"
+          className="absolute inset-0 w-full h-full bg-white/95 dark:bg-black/95 backdrop-blur-sm"
+          style={{ 
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            height: '100%'
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: mobileOpen ? 1 : 0 }}
           transition={{ 
@@ -288,7 +306,7 @@ const Navbar = () => {
         
         {/* Menu Content */}
         <motion.div
-          className="relative z-10 flex flex-col items-center justify-center gap-6 w-full max-w-sm mx-auto px-6 py-8"
+          className="relative z-10 flex flex-col items-center justify-center gap-6 w-full max-w-sm mx-auto px-6 py-8 min-h-screen"
           initial={{ opacity: 0, y: 20 }}
           animate={{ 
             opacity: mobileOpen ? 1 : 0, 
@@ -297,14 +315,21 @@ const Navbar = () => {
           transition={{ duration: 0.3, delay: 0.1 }}
         >
           {/* Close Button */}
-          <button
-            className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 backdrop-blur-sm transition-colors duration-200 hover:bg-gray-200/50 dark:hover:bg-gray-700/50"
+          <motion.button
+            className="absolute top-6 right-6 flex items-center justify-center w-12 h-12 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm transition-all duration-200 hover:bg-white dark:hover:bg-gray-700 shadow-lg hover:shadow-xl"
             onClick={() => setMobileOpen(false)}
             aria-label="Close navigation menu"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            initial={{ opacity: 0, rotate: -90 }}
+            animate={{ opacity: 1, rotate: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
           >
-            <span className="block w-5 h-0.5 bg-gray-700 dark:bg-gray-200 rounded transform rotate-45"/>
-            <span className="block w-5 h-0.5 bg-gray-700 dark:bg-gray-200 rounded transform -rotate-45 -mt-0.5"/>
-          </button>
+            <div className="relative w-6 h-6 flex items-center justify-center">
+              <span className="absolute block w-6 h-0.5 bg-gray-700 dark:bg-gray-200 rounded transform rotate-45"/>
+              <span className="absolute block w-6 h-0.5 bg-gray-700 dark:bg-gray-200 rounded transform -rotate-45"/>
+            </div>
+          </motion.button>
           
           {/* Navigation Links */}
           {navLinks.map((item, index) => (

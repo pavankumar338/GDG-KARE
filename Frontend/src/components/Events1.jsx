@@ -25,22 +25,22 @@ const EventsSection = styled.section`
   color: #000000;
   
   body.dark & {
-    background: #1A1A1A;
+    background: #202124;
     color: #FFFFFF;
+  }
+  
+  @media (prefers-color-scheme: light) {
+    background: #FFFFFF;
+    color: #000000;
   }
 `;
 
 const EventsContainer = styled.div`
   position: relative;
   z-index: 1;
-  max-width: 1280px;
+  max-width: 80rem;
   margin: 0 auto;
   padding: 4rem 2rem;
-  background: #FFFFFF;
-  
-  body.dark & {
-    background: #1A1A1A;
-  }
 `;
 
 // Enhanced Professional Image Carousel component with Framer Motion
@@ -88,9 +88,9 @@ const ImageCarousel = ({ images }) => {
   }, []);
 
   return (
-    <div className="w-full h-[60vh] md:h-screen relative overflow-hidden bg-black">
-      {/* Black Overlay */}
-      <div className="absolute inset-0 bg-black/50 z-10"></div>
+    <div className="w-full h-[80vh] md:h-screen relative overflow-hidden">
+      {/* Subtle gradient overlay for text readability while preserving image visibility */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/30 z-5"></div>
       
       {/* Hero Text Overlay with Framer Motion */}
       <motion.div 

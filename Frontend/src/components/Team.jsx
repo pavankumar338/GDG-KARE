@@ -257,7 +257,7 @@ const SocialIcon = ({ socialLink }) => {
       href={socialLink.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-white hover:scale-110 transition-transform duration-200"
+      className="text-gray-600 dark:text-gray-300 hover:scale-110 transition-all duration-200"
       aria-label={`${socialLink.platform} profile`}
     >
       {getIcon()}
@@ -279,103 +279,73 @@ const getInitials = (name) => {
 };
 
 const TeamMemberCard = ({ member }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  
-  const gdgColors = {
-    // Core Colors
-    blue: '#4285f4',
-    green: '#34a853',
-    yellow: '#f9ab00',
-    red: '#ea4335',
-    
-    // Halftones
-    blueHalf: '#57caff',
-    greenHalf: '#5cdb6d',
-    yellowHalf: '#ffd427',
-    redHalf: '#ff7daf',
-    
-    // Pastels
-    bluePastel: '#c3ecf6',
-    greenPastel: '#ccf6c5',
-    yellowPastel: '#ffe7a5',
-    redPastel: '#f8d8d8',
-    
-    // Grayscale
-    offWhite: '#f0f0f0',
-    black: '#1e1e1e',
-
-    // Selected/Hover state background
-    selectedBg: '#1e1e1e' // Using black02 for selected state
-  };
-
-  // Safely access colors, providing an empty object as fallback if member.colors is null or undefined
-  const memberColors = member.colors || {};
-
-  // Use single color for background and white for text
-  const backgroundColor = memberColors.border1 || gdgColors.blue;
-  const textColor = '#ffffff';
-  const socialIconBg = backgroundColor;
-
   return (
     <div 
       className="relative w-full max-w-sm mx-auto transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
     >
       <div 
-        className="relative p-8 rounded-3xl shadow-xl transition-transform duration-300" 
-        style={{ 
-          backgroundColor: backgroundColor,
-          color: '#fff'
-        }}
+        className="relative p-6 rounded-3xl shadow-xl transition-transform duration-300 bg-white dark:bg-gray-800 h-[350px] flex flex-col border-2 border-black"
       >
         {/* Card content */}
-        <div className="relative">
-          {/* Image or Placeholder */}
-          <div className="relative">
-            {member.image ? (
-              <div className="rounded-2xl overflow-hidden border-4 border-white shadow-md bg-white">
+        <div className="relative text-center flex flex-col flex-1">
+          {/* Round Image with Light Black Background */}
+          <div className="relative mb-4">
+            <div className="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg" style={{ backgroundColor: '#2a2a2a' }}>
+              {member.image ? (
                 <img 
                   src={member.image} 
                   alt={member.name}
-                  className="w-full h-64 object-cover object-center"
+                  className="w-full h-full object-cover object-center"
                 />
-              </div>
-            ) : (
-              <div 
-                className="rounded-2xl overflow-hidden border-4 border-white shadow-md bg-white flex items-center justify-center text-white font-bold text-4xl"
-                style={{
-                  width: '100%',
-                  height: '16rem', // h-64 is 16rem
-                  backgroundColor: backgroundColor
-                }}
-              >
-                {getInitials(member.name)}
-              </div>
-            )}
-            {/* Role Label */}
-            <div 
-              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap bg-white text-black"
-            >
-              {member.role}
+              ) : (
+                <div 
+                  className="w-full h-full flex items-center justify-center text-white font-bold text-2xl"
+                  style={{ backgroundColor: '#2a2a2a' }}
+                >
+                  {getInitials(member.name)}
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Name Label */}
-          <div className="mt-8 text-center relative z-10">
-             <div
-               className="inline-block px-4 py-2 text-lg font-bold whitespace-nowrap text-white"
-             >
-               {member.name}
-             </div>
+          {/* Name */}
+          <div className="mb-2 flex-1 flex items-center justify-center">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white text-center leading-tight">
+              {member.name}
+            </h3>
+          </div>
+
+          {/* Role */}
+          <div className="mb-3">
+            <span className="inline-block px-3 py-1 bg-[#4285F4] text-white text-sm font-medium rounded-full">
+              {member.role}
+            </span>
           </div>
 
           {/* Social links */}
-          <div className="flex justify-center gap-6 mt-4">
-            {Object.entries(member.socials || {}).map(([platform, url]) => url && url !== '#' && (
-              <div key={platform} className="rounded-lg p-2 shadow-md" // Rounded corners and shadow for social icons
-                   style={{ backgroundColor: socialIconBg }}>
-                <SocialIcon socialLink={{ platform, url }} />
-              </div>
-            ))}
+          <div className="flex justify-center gap-3 mt-auto">
+            {member.socials?.linkedin && (
+              <a
+                href={member.socials.linkedin === '#' ? '#' : member.socials.linkedin}
+                target={member.socials.linkedin === '#' ? '_self' : '_blank'}
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-[#0077B5] flex items-center justify-center hover:bg-[#005885] transition-colors duration-200"
+                onClick={member.socials.linkedin === '#' ? (e) => e.preventDefault() : undefined}
+              >
+                <Linkedin size={16} className="text-white" />
+              </a>
+            )}
+            {member.socials?.github && (
+              <a
+                href={member.socials.github === '#' ? '#' : member.socials.github}
+                target={member.socials.github === '#' ? '_self' : '_blank'}
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-[#333] flex items-center justify-center hover:bg-[#24292e] transition-colors duration-200"
+                onClick={member.socials.github === '#' ? (e) => e.preventDefault() : undefined}
+              >
+                <Github size={16} className="text-white" />
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -407,9 +377,9 @@ const TeamSection = () => {
       {/* Organizers Section */}
       <div className="mb-24">
         <h3 className="text-3xl font-bold mb-12 text-center text-[#4285F4]">Our Organizers</h3>
-        <div className="flex flex-col items-center space-y-8 md:space-y-0 md:flex-row md:flex-wrap md:justify-center md:gap-16">
+        <div className="flex flex-wrap justify-center gap-8">
           {organizers.map((member, index) => (
-            <div key={index} className="w-full max-w-[320px] md:w-auto">
+            <div key={index} className="w-full max-w-[320px] sm:w-[320px]">
               <TeamMemberCard member={member} />
             </div>
           ))}
@@ -419,45 +389,28 @@ const TeamSection = () => {
       {/* Main Team Members */}
       <div className="mb-24">
         <h3 className="text-3xl font-bold mb-12 text-center text-[#4285F4]">Our Team</h3>
-        <div className="relative h-[400px] w-full overflow-hidden">
-          <div className="absolute whitespace-nowrap animate-moveRight flex items-center gap-16">
-            {[...otherMembers, ...otherMembers, ...otherMembers].map((member, index) => (
-              <div key={index} className="flex-none w-80 transition-all duration-300 hover:scale-110">
-                <TeamMemberCard member={member} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Coordinators Section */}
-      <div className="mt-24">
-        <h3 className="text-3xl font-bold mb-12 text-center text-[#4285F4]">Our Coordinators</h3>
-        <div className="flex flex-col items-center space-y-8 md:space-y-0 md:flex-row md:flex-wrap md:justify-center md:gap-16">
-          {coordinators.map((member, index) => (
-            <div key={index} className="w-full max-w-[320px] md:w-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
+          {otherMembers.map((member, index) => (
+            <div key={index} className="w-full max-w-[320px]">
               <TeamMemberCard member={member} />
             </div>
           ))}
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes moveRight {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-33.333%);
-          }
-        }
-        .animate-moveRight {
-          animation: moveRight 30s linear infinite;
-        }
-        .animate-moveRight:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
+      {/* Coordinators Section */}
+      <div className="mt-24">
+        <h3 className="text-3xl font-bold mb-12 text-center text-[#4285F4]">Our Coordinators</h3>
+        <div className="flex flex-wrap justify-center gap-8">
+          {coordinators.map((member, index) => (
+            <div key={index} className="w-full max-w-[320px] sm:w-[320px]">
+              <TeamMemberCard member={member} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+
     </section>
   );
 };

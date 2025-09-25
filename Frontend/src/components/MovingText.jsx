@@ -1,117 +1,58 @@
 import React from 'react';
 
-const GDGLogo = ({ direction = 'left', size = 40 }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="30 30 150 150"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={`mx-2 sm:mx-4 ${direction === 'left' ? 'rotate-180' : ''}`}
-    style={{}}
-  >
-    {direction === 'left' ? (
-      <>
-        {/* First fragment - Red (top) and Blue (bottom, with gap) */}
-        <path
-          d="M132.9 39.8C107.7 54 82.5 68.2 57.3 82.4c-3.6 2-7.2 4.1-10.8 6.1c-10.9 6.2-15.6 22.1-8.6 32.8c7.1 11.1 21.1 15.2 32.8 8.6c25.2-14.2 50.4-28.4 75.7-42.6c3.6-2 7.2-4.1 10.8-6.1c10.9-6.2 15.6-22.1 8.6-32.8C158.6 37.3 144.7 33.2 132.9 39.8z"
-          fill="#EA4335"
-        />
-        <path
-          d="M156.2 137.2c-25.2-14.2-50.4-28.4-75.7-42.6c-3.6-2-7.2-4.1-10.8-6.1c-10.9-6.2-26.7-3-32.8 8.6c-6 11.3-3.1 26.3 8.6 32.8c25.2 14.2 50.4 28.4 75.7 42.6c3.6 2 7.2 4.1 10.8 6.1c10.9 6.2 26.7 3 32.8-8.6C170.8 158.7 167.8 143.8 156.2 137.2z"
-          fill="#4285F4"
-          transform="translate(0,8)"
-        />
-        {/* Second fragment - Blue and Red */}
-        <path
-          d="M132.9 39.8C107.7 54 82.5 68.2 57.3 82.4c-3.6 2-7.2 4.1-10.8 6.1c-10.9 6.2-15.6 22.1-8.6 32.8c7.1 11.1 21.1 15.2 32.8 8.6c25.2-14.2 50.4-28.4 75.7-42.6c3.6-2 7.2-4.1 10.8-6.1c10.9-6.2 15.6-22.1 8.6-32.8C158.6 37.3 144.7 33.2 132.9 39.8z"
-          fill="#4285F4"
-          transform="translate(150, 0) scale(-1, 1)"
-          style={{ filter: 'drop-shadow(0 0 4px #4285F440)' }}
-        />
-        <path
-          d="M156.2 137.2c-25.2-14.2-50.4-28.4-75.7-42.6c-3.6-2-7.2-4.1-10.8-6.1c-10.9-6.2-26.7-3-32.8 8.6c-6 11.3-3.1 26.3 8.6 32.8c25.2 14.2 50.4 28.4 75.7 42.6c3.6 2 7.2 4.1 10.8 6.1c10.9 6.2 26.7 3 32.8-8.6C170.8 158.7 167.8 143.8 156.2 137.2z"
-          fill="#EA4335"
-          transform="translate(150, 0) scale(-1, 1)"
-          style={{ filter: 'drop-shadow(0 0 4px #EA433540)' }}
-        />
-      </>
-    ) : (
-      <>
-        {/* First fragment - Blue and Red */}
-        <path
-          d="M132.9 39.8C107.7 54 82.5 68.2 57.3 82.4c-3.6 2-7.2 4.1-10.8 6.1c-10.9 6.2-15.6 22.1-8.6 32.8c7.1 11.1 21.1 15.2 32.8 8.6c25.2-14.2 50.4-28.4 75.7-42.6c3.6-2 7.2-4.1 10.8-6.1c10.9-6.2 15.6-22.1 8.6-32.8C158.6 37.3 144.7 33.2 132.9 39.8z"
-          fill="#4285F4"
-          style={{ filter: 'drop-shadow(0 0 4px #4285F440)' }}
-        />
-        <path
-          d="M156.2 137.2c-25.2-14.2-50.4-28.4-75.7-42.6c-3.6-2-7.2-4.1-10.8-6.1c-10.9-6.2-26.7-3-32.8 8.6c-6 11.3-3.1 26.3 8.6 32.8c25.2 14.2 50.4 28.4 75.7 42.6c3.6 2 7.2 4.1 10.8 6.1c10.9 6.2 26.7 3 32.8-8.6C170.8 158.7 167.8 143.8 156.2 137.2z"
-          fill="#EA4335"
-          style={{ filter: 'drop-shadow(0 0 4px #EA433540)' }}
-        />
-        {/* Second fragment - Green and Yellow */}
-        <path
-          d="M132.9 39.8C107.7 54 82.5 68.2 57.3 82.4c-3.6 2-7.2 4.1-10.8 6.1c-10.9 6.2-15.6 22.1-8.6 32.8c7.1 11.1 21.1 15.2 32.8 8.6c25.2-14.2 50.4-28.4 75.7-42.6c3.6-2 7.2-4.1 10.8-6.1c10.9-6.2 15.6-22.1 8.6-32.8C158.6 37.3 144.7 33.2 132.9 39.8z"
-          fill="#34A853"
-          transform="translate(150, 0) scale(-1, 1)"
-          style={{ filter: 'drop-shadow(0 0 4px #34A85340)' }}
-        />
-        <path
-          d="M156.2 137.2c-25.2-14.2-50.4-28.4-75.7-42.6c-3.6-2-7.2-4.1-10.8-6.1c-10.9-6.2-26.7-3-32.8 8.6c-6 11.3-3.1 26.3 8.6 32.8c25.2 14.2 50.4 28.4 75.7 42.6c3.6 2 7.2 4.1 10.8 6.1c10.9 6.2 26.7 3 32.8-8.6C170.8 158.7 167.8 143.8 156.2 137.2z"
-          fill="#FBBC04"
-          transform="translate(150, 0) scale(-1, 1)"
-          style={{ filter: 'drop-shadow(0 0 4px #FBBC0440)' }}
-        />
-      </>
-    )}
-  </svg>
-);
-
 const MovingText = () => {
-  const texts = [
-    { text: "GDG", color: "#4285F4" }, // Google Blue
-    { text: "KARE", color: "#EA4335" }, // Google Red
-    { text: "GDG", color: "#34A853" }, // Google Green
-    { text: "KARE", color: "#4285F4" }, // Google Blue
-    { text: "GDG", color: "#FBBC04" }, // Google Yellow
-    { text: "KARE", color: "#34A853" }, // Google Green
-    { text: "GDG", color: "#4285F4" }, // Google Blue
-    { text: "KARE", color: "#EA4335" },
-    { text: "GDG", color: "#4285F4" }, // Google Blue
-    { text: "KARE", color: "#EA4335" }, // Google Red
-    { text: "GDG", color: "#34A853" }, // Google Green
-    { text: "KARE", color: "#4285F4" }, // Google Blue
-    { text: "GDG", color: "#FBBC04" }, // Google Yellow
-    { text: "KARE", color: "#34A853" }, // Google Green
-    { text: "GDG", color: "#4285F4" }, // Google Blue
-    { text: "KARE", color: "#EA4335" },  // Google Red
-    { text: "SPACER", color: "transparent" }, // Spacer element
+  const textPairs = [
+    { gdg: { text: "GDG", color: "#4285F4" }, kare: { text: "KARE", color: "#EA4335" }, dotColor: "#EA4335" },
+    { gdg: { text: "GDG", color: "#34A853" }, kare: { text: "KARE", color: "#4285F4" }, dotColor: "#4285F4" },
+    { gdg: { text: "GDG", color: "#FBBC04" }, kare: { text: "KARE", color: "#34A853" }, dotColor: "#34A853" },
+    { gdg: { text: "GDG", color: "#4285F4" }, kare: { text: "KARE", color: "#EA4335" }, dotColor: "#EA4335" },
+    { gdg: { text: "GDG", color: "#4285F4" }, kare: { text: "KARE", color: "#EA4335" }, dotColor: "#EA4335" },
+    { gdg: { text: "GDG", color: "#34A853" }, kare: { text: "KARE", color: "#4285F4" }, dotColor: "#4285F4" },
+    { gdg: { text: "GDG", color: "#FBBC04" }, kare: { text: "KARE", color: "#34A853" }, dotColor: "#34A853" },
+    { gdg: { text: "GDG", color: "#4285F4" }, kare: { text: "KARE", color: "#EA4335" }, dotColor: "#EA4335" },
   ];
 
   return (
     <div className="w-full h-16 sm:h-20 relative bg-gradient-to-r from-[#4285F4]/5 via-[#FBBC04]/5 to-[#EA4335]/5 dark:from-[#4285F4]/10 dark:via-[#FBBC04]/10 dark:to-[#EA4335]/10 backdrop-blur-sm overflow-hidden">
       <div className="absolute inset-0 flex items-center">
-        <div className="whitespace-nowrap animate-moveRight flex items-center gap-6 sm:gap-10" style={{ willChange: 'transform' }}>
-          {[...texts, ...texts].map((item, index) => (
-            <React.Fragment key={index}>
-              {item.text !== "SPACER" ? (
-                <span className="flex items-center gap-1 sm:gap-2">
-                  <span
-                    className="text-xl sm:text-3xl font-bold tracking-wider transition-all duration-300 hover:scale-110"
-                    style={{ 
-                      color: item.color,
-                      textShadow: `0 0 8px ${item.color}40, 0 0 16px ${item.color}20`
-                    }}
-                  >
-                    {item.text}
-                  </span>
-                  {item.text === "KARE" && (
-                    <GDGLogo direction={index % 2 === 0 ? 'right' : 'left'} size={24} />
-                  )}
+        <div className="whitespace-nowrap animate-moveRight flex items-center" style={{ willChange: 'transform' }}>
+          {[...textPairs, ...textPairs].map((pair, pairIndex) => (
+            <React.Fragment key={pairIndex}>
+              {/* GDG KARE pair with small gap */}
+              <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                <span
+                  className="text-xl sm:text-3xl font-bold tracking-wider transition-all duration-300 hover:scale-110 inline-block"
+                  style={{ 
+                    color: pair.gdg.color,
+                    textShadow: `0 0 8px ${pair.gdg.color}40, 0 0 16px ${pair.gdg.color}20`
+                  }}
+                >
+                  {pair.gdg.text}
                 </span>
-              ) : (
-                <div className="w-8 sm:w-16" /> // Spacer div
-              )}
+                <span
+                  className="text-xl sm:text-3xl font-bold tracking-wider transition-all duration-300 hover:scale-110 inline-block"
+                  style={{ 
+                    color: pair.kare.color,
+                    textShadow: `0 0 8px ${pair.kare.color}40, 0 0 16px ${pair.kare.color}20`
+                  }}
+                >
+                  {pair.kare.text}
+                </span>
+              </div>
+              
+              {/* Centered dot with larger gaps on both sides */}
+              <div className="flex items-center justify-center px-8 sm:px-12">
+                <span
+                  className="text-sm sm:text-lg font-bold flex items-center justify-center"
+                  style={{ 
+                    color: pair.dotColor,
+                    textShadow: `0 0 8px ${pair.dotColor}40, 0 0 16px ${pair.dotColor}20`,
+                    height: '1.2em'
+                  }}
+                >
+                  •
+                </span>
+              </div>
             </React.Fragment>
           ))}
         </div>
