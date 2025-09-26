@@ -109,8 +109,12 @@ const Events = () => {
           {/* Mobile/Tablet: Horizontal scroll */}
           <div className="lg:hidden relative">
             <div
-              className="flex overflow-x-auto scrollbar-hide gap-8 px-4"
-              style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
+              className="flex overflow-x-auto scrollbar-hide gap-8 px-4 horizontal-scroll"
+              style={{ 
+                scrollSnapType: "x mandatory", 
+                WebkitOverflowScrolling: "touch",
+                overscrollBehaviorX: "contain"
+              }}
             >
               {events.map((event, index) => (
                 <motion.div

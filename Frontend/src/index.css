@@ -87,6 +87,21 @@
   user-select: none;
 }
 
+/* Allow horizontal scrolling for specific elements */
+.horizontal-scroll {
+  touch-action: pan-x !important;
+}
+
+/* Hide scrollbars while maintaining functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 html, body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
