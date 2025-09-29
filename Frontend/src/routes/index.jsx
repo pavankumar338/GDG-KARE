@@ -7,7 +7,7 @@ import Contact from "../components/Contact";
 import NotFound from "../components/NotFound";
 import JoinUs from "../components/JoinUs";
 import About from "../components/About";
-import Mlevent from "../components/Mlevent";
+import Mlevent from "../components/ml-event";
 
 export const router = createBrowserRouter([
   {
