@@ -8,7 +8,8 @@ const events = [
     description: "Join us for an exciting innovation showcase and tech exhibition. This event brought together developers, innovators, and tech enthusiasts to explore cutting-edge technologies and showcase their creative projects.",
     image: " Copy of GDG24 Signage Poster - Red (1).jpg",
     category: "Workshop",
-    attendees: "150+"
+    attendees: "150+",
+    link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-agent-speak/"
   },
      {
     title: "Basics of Github",
@@ -16,7 +17,8 @@ const events = [
     description: "Join us for an exciting innovation showcase and tech exhibition. This event brought together developers, innovators, and tech enthusiasts to explore cutting-edge technologies and showcase their creative projects.",
     image: " Copy of GDG24 Signage Poster - Green (1).jpg",
     category: "Workshop",
-    attendees: "150+"
+    attendees: "150+",
+    link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-introduction-to-git-and-github-master-the-basics/"
   },
   {
     title: "Inventia",
@@ -24,7 +26,8 @@ const events = [
     description: "Join us for an exciting innovation showcase and tech exhibition. This event brought together developers, innovators, and tech enthusiasts to explore cutting-edge technologies and showcase their creative projects.",
     image: "/Copy of GDG24 Signage Poster - Blue.jpg",
     category: "Innovation",
-    attendees: "150+"
+    attendees: "150+",
+    link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-inventia-2k24/"
   },
   {
     title: "Study Jams Session - 1",
@@ -32,7 +35,8 @@ const events = [
     description: "Workshop / Study Group session focusing on hands-on learning and collaboration. Participants engaged in interactive coding sessions and collaborative problem-solving exercises.",
     image: "/Copy of GDG24 Signage Poster - Yellow (1).jpg",
     category: "Workshop",
-    attendees: "80+"
+    attendees: "100+",
+    link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-study-jams-session-1/"
   },
 
   {
@@ -41,15 +45,16 @@ const events = [
     description: "Info session on building applications with Artificial Intelligence. Explore the latest AI tools and frameworks, and learn how to integrate AI capabilities into your projects.",
     image: "Copy of GDG24 Signage Poster - Green (2).jpg",
     category: "AI Workshop",
-    attendees: "200+"
-  },
+    attendees: "200+",
+    link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-prompt-engineering/"},
   {
     title: "G2 HACKFEST",
     date: "November 4, 2024",
     description: "Info session on building applications with Artificial Intelligence. Explore the latest AI tools and frameworks, and learn how to integrate AI capabilities into your projects.",
     image: "Copy of GDG24 Signage Poster - Blue (2).jpg",
     category: "Hackathon",
-    attendees: "200+"
+    attendees: "200+",
+    link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-g2hackfest/"
   },
     {
     title: "Google Solution Challenge",
@@ -57,7 +62,8 @@ const events = [
     description: "Info session on building applications with Artificial Intelligence. Explore the latest AI tools and frameworks, and learn how to integrate AI capabilities into your projects.",
     image: "/Copy of GDG24 Signage Poster - Red.jpg",
     category: "Workshop",
-    attendees: "200+"
+    attendees: "200+",
+    link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-next-gen-legacy-modernization-genai-kubernetes-and-google-cloud-in-action/"
   }
 
 
@@ -150,7 +156,7 @@ const Events = () => {
                         </span>
                       </div>
                       <a 
-                        href="https://gdg.community.dev/gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india/" 
+                        href={event.link} 
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="mt-4 px-6 py-2 bg-[#4285F4] hover:bg-[#3367D6] text-white rounded-full transition-all duration-300 flex items-center gap-2 text-lg font-medium w-fit"
@@ -208,7 +214,7 @@ const Events = () => {
                           </span>
                         </div>
                         <a 
-                          href="https://gdg.community.dev/gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india/" 
+                          href={event.link} 
                           target="_blank" 
                           rel="noopener noreferrer" 
                           className="mt-6 px-8 py-3 bg-[#4285F4] hover:bg-[#3367D6] text-white rounded-full transition-all duration-300 flex items-center gap-3 text-lg font-medium w-fit"

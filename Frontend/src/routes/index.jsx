@@ -7,6 +7,7 @@ import Contact from "../components/Contact";
 import NotFound from "../components/NotFound";
 import JoinUs from "../components/JoinUs";
 import About from "../components/About";
+import Mlevent from "../components/Mlevent";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "ml-event",
+        element: <Mlevent />,
       },
       {
         path: "*",
