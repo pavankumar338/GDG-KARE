@@ -912,7 +912,7 @@ const MLEvent = () => {
                 registration and payment details. You'll receive a confirmation email shortly.
               </p>
               <p>
-                For any further queries, contact us at <strong  class="text-indigo-600">gdgkare@klu.ac.in</strong>
+                For any further queries, contact us at <strong  class="text-indigo-600">gdsckare@klu.ac.in</strong>
               </p>
               
               <p style={{ marginBottom: '0.5rem' }}>
@@ -930,10 +930,7 @@ const MLEvent = () => {
                 Join WhatsApp Group
               </WhatsAppButton>
 
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
-                Stay connected with fellow participants and get real-time updates about the event!
-              </p>
-              
+            
               <BackButton to="/events">
                 ← Back to Events
               </BackButton>
