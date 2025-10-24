@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "ml-event",
+        path: "techsprint-event",
         element: <Mlevent />,
       },
       {

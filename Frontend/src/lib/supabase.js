@@ -15,4 +15,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Database table names
-export const ML_REGISTRATIONS_TABLE = 'ml-registrations' 
+// Use underscored table name to avoid issues with quoted names containing hyphens.
+// The migration creates both `ml_registrations` (recommended) and a legacy
+// quoted table "ml-registrations"; prefer the underscored name in code.
+export const ML_REGISTRATIONS_TABLE = 'ml_registrations'
