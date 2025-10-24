@@ -342,6 +342,17 @@ export default function MlEventTeam() {
   if (!validateFull()) return;
     setLoading(true);
     try {
+      // Re-check duplicates (regnos + emails) immediately before saving to avoid race where user navigated back
+      const dupRegs = await checkDuplicateRegNos();
+      const dupEmails = await checkDuplicateEmails();
+      const merged = { ...dupRegs, ...dupEmails };
+      if (Object.keys(merged).length) {
+        // show field-level errors and abort save
+        setErrors(prev => ({ ...prev, ...merged }));
+        setLoading(false);
+        return;
+      }
+
       const saved = await saveRegistration(form);
       // generate acknowledgement numbers for both students (use returned row id when available)
       const base = (saved && saved.id) ? saved.id : Date.now();
