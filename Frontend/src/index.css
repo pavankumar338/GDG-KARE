@@ -78,8 +78,37 @@
   --muted-foreground: #9AA0A6;
   --accent: #FDD663;
   --accent-foreground: #202124;
+  /* Legacy / component variables overridden for dark mode compatibility */
+  --bg-primary: var(--bg-primary-dark);
+  --bg-secondary: var(--bg-secondary-dark);
+  --bg-input: var(--card-bg-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --card-bg: var(--card-bg-dark);
+  --border-color: var(--border-color-dark);
+}
+ 
+/* Ensure inputs use theme variables so they look correct in both light and dark */
+/* Map blue alpha to dark variant in dark mode */
+.dark {
+  --blue-alpha: var(--blue-alpha-dark);
+  --blue-alpha-hover: var(--blue-alpha-dark-hover);
 }
 
+input, textarea, select {
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--blue-alpha);
+  border-color: var(--medium-blue);
+}
 /* Google Fonts already imported at top of file */
 
 * {
