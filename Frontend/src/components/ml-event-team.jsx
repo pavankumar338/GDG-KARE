@@ -239,6 +239,63 @@ export default function MlEventTeam() {
     return Object.keys(e).length === 0;
   };
 
+  // server-side uniqueness checks for regnos/emails
+  const checkDuplicateRegNos = async () => {
+    const e = {};
+    try {
+      const r1 = form.p1_regno && form.p1_regno.trim();
+      const r2 = form.p2_regno && form.p2_regno.trim();
+      const regs = [r1, r2].filter(Boolean);
+      if (!regs.length) return e;
+
+      // build or-clause to check both p1_regno and p2_regno columns for either value
+      const orParts = regs.flatMap(r => [`p1_regno.eq.${r}`, `p2_regno.eq.${r}`]).join(',');
+      const { data, error } = await supabase.from(ML_REGISTRATIONS_TABLE).select('id,p1_regno,p2_regno').or(orParts);
+      if (error) {
+        console.error('Duplicate regno lookup failed', error);
+        return e;
+      }
+      if (!data || !data.length) return e;
+
+      // inspect returned rows to set specific field errors
+      data.forEach(row => {
+        if (r1 && (row.p1_regno === r1 || row.p2_regno === r1)) e.p1_regno = 'Registration number already used';
+        if (r2 && (row.p1_regno === r2 || row.p2_regno === r2)) e.p2_regno = 'Registration number already used';
+      });
+      return e;
+    } catch (ex) {
+      console.error('checkDuplicateRegNos error', ex);
+      return e;
+    }
+  };
+
+  const checkDuplicateEmails = async () => {
+    const e = {};
+    try {
+      const m1 = form.p1_email && form.p1_email.trim();
+      const m2 = form.p2_email && form.p2_email.trim();
+      const mails = [m1, m2].filter(Boolean);
+      if (!mails.length) return e;
+
+      const orParts = mails.flatMap(m => [`p1_email.eq.${m}`, `p2_email.eq.${m}`]).join(',');
+      const { data, error } = await supabase.from(ML_REGISTRATIONS_TABLE).select('id,p1_email,p2_email').or(orParts);
+      if (error) {
+        console.error('Duplicate email lookup failed', error);
+        return e;
+      }
+      if (!data || !data.length) return e;
+
+      data.forEach(row => {
+        if (m1 && (row.p1_email === m1 || row.p2_email === m1)) e.p1_email = 'Email already registered';
+        if (m2 && (row.p1_email === m2 || row.p2_email === m2)) e.p2_email = 'Email already registered';
+      });
+      return e;
+    } catch (ex) {
+      console.error('checkDuplicateEmails error', ex);
+      return e;
+    }
+  };
+
   // full validation including problem statement (used on final submit)
   const validateFull = () => {
     const ok = validateParticipants();
@@ -257,10 +314,22 @@ export default function MlEventTeam() {
     }
   };
 
-  const goNext = (e) => {
+  const goNext = async (e) => {
     // validate basic participant fields before moving to next
     if (!validateParticipants()) return;
-    setStep(2);
+    setSubmitError('');
+    setLoading(true);
+    try {
+      const dupRegs = await checkDuplicateRegNos();
+      if (Object.keys(dupRegs).length) {
+        setErrors(prev => ({ ...prev, ...dupRegs }));
+        return;
+      }
+      // all good
+      setStep(2);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const goBack = () => setStep(1);
