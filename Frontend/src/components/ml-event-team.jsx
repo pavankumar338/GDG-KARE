@@ -144,13 +144,7 @@ async function saveRegistration(form) {
 
   const row = {
     // top-level compatibility fields
-    team_name: form.teamName || `${form.p1_name} & ${form.p2_name}`,
-    name: form.teamName || `${form.p1_name} & ${form.p2_name}`,
-    registration_number: `${form.p1_regno || ''}_${form.p2_regno || ''}`,
-    whatsapp_number: form.p1_whatsapp || '',
-    year: isNaN(p1Year) ? null : p1Year,
-    department: form.p1_department || form.p2_department || '',
-    college_email: form.p1_email || '',
+    
     // participant-specific columns (store each value in its own column)
     p1_name: form.p1_name || null,
     p1_regno: form.p1_regno || null,
@@ -164,7 +158,7 @@ async function saveRegistration(form) {
     p2_year: isNaN(p2Year) ? null : p2Year,
     p2_department: form.p2_department || null,
   p2_email: derivedP2Email,
-    registration_date: new Date().toISOString(),
+   
     // allow caller to supply ack numbers (if user provided them on step 2)
     p1_ack: form.p1_ack || null,
     p2_ack: form.p2_ack || null,
