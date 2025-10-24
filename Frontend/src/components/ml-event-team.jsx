@@ -171,10 +171,34 @@ async function saveRegistration(form) {
     problem_statement: form.problemStatement || null
   };
 
-  // select only the id to avoid requesting deprecated/removed columns which may cause a 400
-  const { data, error } = await supabase.from(ML_REGISTRATIONS_TABLE).insert([row]).select('id').single();
-  if (error) throw error;
-  return data;
+  // Try inserting the row. If the DB schema no longer contains some email columns
+  // (e.g. college_email, p1_email, p2_email) Supabase may return a 400 referencing
+  // the missing column name from its schema cache. Detect that and retry without
+  // the offending keys so the client remains resilient to schema drift.
+  try {
+    const { data, error } = await supabase.from(ML_REGISTRATIONS_TABLE).insert([row]).select('id').single();
+    if (error) throw error;
+    return data;
+  } catch (err) {
+    try {
+      const msg = String(err && (err.message || err.error || err)).toLowerCase();
+      // detect missing-column style errors mentioning any of these columns
+      const missing = [];
+      ['p1_email', 'p2_email', 'college_email'].forEach(col => { if (msg.includes(col)) missing.push(col); });
+      if (missing.length) {
+        // strip missing fields and retry
+        const sanitized = { ...row };
+        missing.forEach(k => { if (k in sanitized) delete sanitized[k]; });
+        const { data: data2, error: error2 } = await supabase.from(ML_REGISTRATIONS_TABLE).insert([sanitized]).select('id').single();
+        if (error2) throw error2;
+        return data2;
+      }
+    } catch (retryErr) {
+      // fall through to rethrow original error if retry failed
+      console.error('Retry insert without missing columns failed', retryErr);
+    }
+    throw err;
+  }
 }
 
 export default function MlEventTeam() {

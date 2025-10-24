@@ -1,20 +1,9 @@
 
- 1. Timezone-Aware Collaboration Dashboard 
-Background: Remote teams often struggle to schedule calls across different time zones. 
-Goal: Build a web app that automatically finds overlapping free time across all team members 
-and suggests optimal meeting slots with one-click calendar sync. --- 
+ 1. Timezone-Aware Collaboration Dashboard Background: Remote teams often struggle to schedule calls across different time zones. Goal: Build a web app that automatically finds overlapping free time across all team members and suggests optimal meeting slots with one-click calendar sync.
 
- 2. Digital Declutter Tracker 
-Background: People keep hundreds of unused files, photos, and bookmarks online. 
-Goal: Create a SaaS tool that connects to Google Drive, Gmail, or Dropbox, finds large/old files, 
-duplicate photos, and unused folders, then suggests what to delete or archive. --- 
+ 2. Digital Declutter Tracker Background: People keep hundreds of unused files, photos, and bookmarks online. Goal: Create a SaaS tool that connects to Google Drive, Gmail, or Dropbox, finds large/old files, duplicate photos, and unused folders, then suggests what to delete or archive. 
 
- 3. Smart Comment Summarizer for Forums 
-
- 
-Background: Discussion threads on Reddit or forums can get too long to read. 
-Goal: Build a web plugin or SaaS that summarizes any discussion thread into 5 key takeaways 
-using NLP, so readers get the essence instantly. --- 
+ 3. Smart Comment Summarizer for Forums Background: Discussion threads on Reddit or forums can get too long to read. Goal: Build a web plugin or SaaS that summarizes any discussion thread into 5 key takeaways using NLP, so readers get the essence instantly. 
 
  4. Focus Room – Anti-Distraction Workspace 
 Background: People lose focus due to too many browser tabs and notifications. 
