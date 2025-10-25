@@ -5,6 +5,16 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+function redact(row) {
+  if (!row || typeof row !== 'object') return row;
+  const copy = { ...row };
+  if (copy.p1_regno) copy.p1_regno = String(copy.p1_regno).slice(-4).padStart(String(copy.p1_regno).length, '*');
+  if (copy.p2_regno) copy.p2_regno = String(copy.p2_regno).slice(-4).padStart(String(copy.p2_regno).length, '*');
+  if (copy.p1_email) copy.p1_email = `***${String(copy.p1_email).slice(-10)}`;
+  if (copy.p2_email) copy.p2_email = `***${String(copy.p2_email).slice(-10)}`;
+  return copy;
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
   try {
@@ -34,6 +44,10 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Invalid or missing p2_regno (expected 11 digits)' });
     }
 
+    if (process.env.DEBUG_FUNCTIONS === 'true') {
+      try { console.error('submit-ml-2 incoming row:', JSON.stringify(redact(row))); } catch (e) { /* ignore */ }
+    }
+
     const { data, error } = await supabase.from('ml_registrations').insert([row]).select('id').single();
     if (error) throw error;
     res.json({ success: true, data });
@@ -42,6 +56,9 @@ module.exports = async (req, res) => {
     const message = (error && (error.message || error.error || JSON.stringify(error))) || 'Failed to submit registration';
     const status = (error && error.status) || 500;
     const details = error && (error.details || error.hint || null);
+    if (process.env.DEBUG_FUNCTIONS === 'true') {
+      try { console.error('submit-ml-2 error stack:', error && (error.stack || error)); } catch (e) { /* ignore */ }
+    }
     res.status(status >= 400 ? status : 500).json({ error: message, details });
   }
 };
