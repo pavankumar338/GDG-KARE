@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { RetroGrid } from "./RetroGrid";
 import { supabase, ML_REGISTRATIONS_TABLE } from "../lib/supabase";
+import { enqueueRegistration } from "../lib/submissionQueue";
 
 const Section = styled.section`
   padding: 3.5rem 1rem;
@@ -135,40 +136,8 @@ const LinkButton = styled(Link)`
   box-shadow: 0 8px 18px rgba(13,30,59,0.08);
 `;
 
-async function saveRegistration(form) {
-  const p1Year = form.p1_year ? parseInt(form.p1_year.charAt(0)) : null;
-  const p2Year = form.p2_year ? parseInt(form.p2_year.charAt(0)) : null;
-  // ensure college emails exist; if not, derive from regno where possible
-  const derivedP1Email = form.p1_email && form.p1_email.trim() ? form.p1_email.trim() : (form.p1_regno ? `${form.p1_regno}@klu.ac.in` : null);
-  const derivedP2Email = form.p2_email && form.p2_email.trim() ? form.p2_email.trim() : (form.p2_regno ? `${form.p2_regno}@klu.ac.in` : null);
-
-  const row = {
-  
-    // participant-specific columns (store each value in its own column)
-    p1_name: form.p1_name || null,
-    p1_regno: form.p1_regno || null,
-    p1_whatsapp: form.p1_whatsapp || null,
-    p1_year: isNaN(p1Year) ? null : p1Year,
-    p1_department: form.p1_department || null,
-  p1_email: derivedP1Email,
-    p2_name: form.p2_name || null,
-    p2_regno: form.p2_regno || null,
-    p2_whatsapp: form.p2_whatsapp || null,
-    p2_year: isNaN(p2Year) ? null : p2Year,
-    p2_department: form.p2_department || null,
-  p2_email: derivedP2Email,
-   
-    // allow caller to supply ack numbers (if user provided them on step 2)
-    p1_ack: form.p1_ack || null,
-    p2_ack: form.p2_ack || null,
-    problem_statement: form.problemStatement || null
-  };
-
-  // select only the id to avoid requesting deprecated/removed columns which may cause a 400
-  const { data, error } = await supabase.from(ML_REGISTRATIONS_TABLE).insert([row]).select('id').single();
-  if (error) throw error;
-  return data;
-}
+// saveRegistration moved to src/lib/saveRegistration.js and submissions are
+// routed through src/lib/submissionQueue to reduce burst traffic.
 
 export default function MlEventTeam() {
   const [form, setForm] = useState({
@@ -346,7 +315,10 @@ export default function MlEventTeam() {
         return;
       }
 
-      const saved = await saveRegistration(form);
+  // Use the client-side submission queue to avoid bursting too many
+  // requests at once. enqueueRegistration returns the inserted row data
+  // (same shape as previous saveRegistration returned).
+  const saved = await enqueueRegistration(form);
       // generate acknowledgement numbers for both students (use returned row id when available)
       const base = (saved && saved.id) ? saved.id : Date.now();
       // if user supplied ack numbers on step 2, prefer those
@@ -579,11 +551,11 @@ export default function MlEventTeam() {
 
               <div style={{ marginTop: 12 }}>
                 <Field>
-                  <Label>Acknowledgement (Student 1)</Label>
+                  <Label>Acknowledge receipt number (Student 1)</Label>
                   <Input name="p1_ack" value={form.p1_ack} onChange={onChange} />
                 </Field>
                 <Field>
-                  <Label>Acknowledgement (Student 2)</Label>
+                  <Label>Acknowledge receipt number (Student 2)</Label>
                   <Input name="p2_ack" value={form.p2_ack} onChange={onChange} />
                 </Field>
               </div>
