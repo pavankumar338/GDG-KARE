@@ -399,7 +399,7 @@ export default function MlEventTeam() {
       <RetroGrid />
       <Center>
         <Title initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>TECH SPRINT</Title>
-        <Subtitle>Register your team of two for TECH SPRINT and Select your Problem Statement.</Subtitle>
+        <Subtitle>Register your team of two for TECH SPRINT and select your problem statement.</Subtitle>
 
         {success && (
           <SuccessBox>
@@ -414,12 +414,10 @@ export default function MlEventTeam() {
               {/* Acknowledgement numbers removed from the success confirmation per request */}
 
               <div style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginTop: 8, textAlign: 'center' }}>
-                If you have queries, reach out at <a href="mailto:gdsckare@klu.ac.in">gdsckare@klu.ac.in</a> and join our community.
+                If you have queries, reach out at <a href="mailto:gdsckare@klu.ac.in">gdsckare@klu.ac.in</a> and join our community.<Link to="https://chat.whatsapp.com/EhaEKb9Hi2nLjtiyCGTQSM">WhatsApp Group</Link>
               </div>
 
-              <div style={{ marginTop: 12, textAlign: 'center' }}>
-                <LinkButton to="/events">← Back to Events</LinkButton>
-              </div>
+           
             </SuccessContent>
           </SuccessBox>
         )}
