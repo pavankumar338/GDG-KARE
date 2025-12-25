@@ -5,7 +5,7 @@ const events = [
     {
     title: "Agent-Speak",
     date: "August 15, 2025",
-    description: "Join us for an exciting innovation showcase and tech exhibition. This event brought together developers, innovators, and tech enthusiasts to explore cutting-edge technologies and showcase their creative projects.",
+    description: "Join us for a 3-day immersive workshop designed to introduce and upskill participants in the evolving fields of Generative and Agentic AI. This event is ideal for developers, students, and AI enthusiasts who are curious about how modern AI models are built, fine-tuned, and deployed into real-world applications. Each day is structured to progressively deepen your understanding, starting from foundational concepts, moving into powerful AI frameworks, and concluding with building intelligent, task-performing agents.",
     image: " Copy of GDG24 Signage Poster - Red (1).jpg",
     category: "Workshop",
     attendees: "150+",
@@ -13,8 +13,8 @@ const events = [
   },
      {
     title: "Basics of Github",
-    date: "August 15, 2025",
-    description: "Join us for an exciting innovation showcase and tech exhibition. This event brought together developers, innovators, and tech enthusiasts to explore cutting-edge technologies and showcase their creative projects.",
+    date: "August 5-7, 2025",
+    description: "Unlock the essentials of version control with our 'Introduction to Git and GitHub' workshop. This three-day event is a must-attend for any aspiring developer or technology enthusiast looking to gain a competitive edge. Join us from 5th to 7th August, from 5 PM to 6 PM in 8301 lab, Kalasalingam University, to learn from two of your own, as they guide you through setting up Git and GitHub, executing basic operations, understanding branches and workflows, and mastering the basics of the most important skill wherever you go in the tech industry. ",
     image: " Copy of GDG24 Signage Poster - Green (1).jpg",
     category: "Workshop",
     attendees: "150+",
@@ -22,8 +22,8 @@ const events = [
   },
   {
     title: "Inventia",
-    date: "November 7, 2024",
-    description: "Join us for an exciting innovation showcase and tech exhibition. This event brought together developers, innovators, and tech enthusiasts to explore cutting-edge technologies and showcase their creative projects.",
+    date: "September 9, 2024",
+    description: "Ready to bring your ideas to life and demonstrate your innovative and technical abilities? Join us for Inventia, the mini-solution challenge hosted by GDG-OnCampus KARE (GDSC). This event presents an excellent opportunity for you to showcase your innovative skills and contribute towards solving one or more of the United Nations' 17 Sustainable Development Goals (SDGs) using Google technologies, with a focus on Generative AI.",
     image: "/Copy of GDG24 Signage Poster - Blue.jpg",
     category: "Innovation",
     attendees: "150+",
@@ -31,8 +31,8 @@ const events = [
   },
   {
     title: "Study Jams Session - 1",
-    date: "November 6, 2024", 
-    description: "Workshop / Study Group session focusing on hands-on learning and collaboration. Participants engaged in interactive coding sessions and collaborative problem-solving exercises.",
+    date: "November 5, 2024", 
+    description: "Join us in progressing through the GenAI Study Jams!Let's meet-up and walk through the courses together. Got questions about Study Jams? This is the place to ask.We have competitions and rewards! Let's find out which one of you is the fastest!",
     image: "/Copy of GDG24 Signage Poster - Yellow (1).jpg",
     category: "Workshop",
     attendees: "100+",
@@ -41,28 +41,28 @@ const events = [
 
   {
     title: "Prompt Engineering",
-    date: "November 4, 2024",
-    description: "Info session on building applications with Artificial Intelligence. Explore the latest AI tools and frameworks, and learn how to integrate AI capabilities into your projects.",
+    date: "March 13, 2025",
+    description: "A dynamic AI challenge brought to you by Google Developer Groups (GDG) on Campus, KARE. Master the art of prompt engineering in this exciting two-round competition where participants will recreate AI-generated images and guide AI to create web pages following a specified design..",
     image: "Copy of GDG24 Signage Poster - Green (2).jpg",
-    category: "AI Workshop",
+    category: "Competition",
     attendees: "200+",
     link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-prompt-engineering/"},
   {
     title: "G2 HACKFEST",
-    date: "November 4, 2024",
-    description: "Info session on building applications with Artificial Intelligence. Explore the latest AI tools and frameworks, and learn how to integrate AI capabilities into your projects.",
+    date: "March 29, 2025",
+    description: "G2HackFest is a 24-hour hackathon that brings together the brightest minds of Kalasalingam University to solve real-world problems. Participants will have the opportunity to learn from industry experts, network with like-minded individuals, and compete for grand prizes. With a prize pool of over Rs. 15,000. Join now to learn, grow, and win big.",
     image: "Copy of GDG24 Signage Poster - Blue (2).jpg",
     category: "Hackathon",
-    attendees: "200+",
+    attendees: "300+",
     link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-g2hackfest/"
   },
     {
     title: "Google Solution Challenge",
-    date: "November 4, 2024",
-    description: "Info session on building applications with Artificial Intelligence. Explore the latest AI tools and frameworks, and learn how to integrate AI capabilities into your projects.",
+    date: "February 22, 2025",
+    description: "Next-Gen Legacy Modernization: GenAI, Kubernetes, and Google Cloud in Action explores how cutting-edge AI, containerization, and cloud-native solutions can transform legacy systems. This session will dive into leveraging GenAI for code refactoring, Kubernetes (GKE) for scalable modernization, and Google Cloud for seamless migration and optimization",
     image: "/Copy of GDG24 Signage Poster - Red.jpg",
     category: "Workshop",
-    attendees: "200+",
+    attendees: "150+",
     link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-next-gen-legacy-modernization-genai-kubernetes-and-google-cloud-in-action/"
   }
 
@@ -149,8 +149,8 @@ const Events = () => {
                       </div>
                       <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">{event.description}</p>
                       <div className="flex items-center gap-6">
-                        <span className="text-lg text-gray-900 dark:text-red-400 font-medium">{event.date}</span>
-                        <span className="text-lg text-gray-900 dark:text-green-400">
+                        <span className="text-lg text-gray-900 dark:text-gray-200 font-medium">{event.date}</span>
+                        <span className="text-lg text-gray-900 dark:text-gray-300">
                           <i className="fas fa-users mr-2"></i>
                           {event.attendees} Attended
                         </span>
@@ -207,8 +207,8 @@ const Events = () => {
                         </div>
                         <p className="text-xl text-gray-700 dark:text-gray-200 leading-relaxed">{event.description}</p>
                         <div className="flex items-center gap-8">
-                          <span className="text-xl text-gray-900 dark:text-red-400 font-medium">{event.date}</span>
-                          <span className="text-xl text-gray-900 dark:text-green-400">
+                          <span className="text-xl text-gray-900 dark:text-gray-200 font-medium">{event.date}</span>
+                          <span className="text-xl text-gray-900 dark:text-gray-300">
                             <i className="fas fa-users mr-2"></i>
                             {event.attendees} Attended
                           </span>

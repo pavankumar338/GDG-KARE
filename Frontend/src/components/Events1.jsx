@@ -21,8 +21,9 @@ const EventsSection = styled.section`
   background: #FFFFFF;
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
   color: #000000;
+  width: 100vw;
   
   body.dark & {
     background: #202124;
@@ -40,7 +41,11 @@ const EventsContainer = styled.div`
   z-index: 1;
   max-width: 80rem;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 2rem 1rem;
+  
+  @media (min-width: 768px) {
+    padding: 4rem 2rem;
+  }
 `;
 
 // Enhanced Professional Image Carousel component with Framer Motion

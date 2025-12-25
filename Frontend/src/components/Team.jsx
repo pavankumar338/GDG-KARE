@@ -3,11 +3,11 @@ import { Twitter, Linkedin, Github, Instagram } from 'lucide-react';
 
 const team = [
   {
-    name: "Keerthi Kumar M",
+    name: "Karthik Raj ",
     role: "Organizer",
-    image: "https://res.cloudinary.com/startup-grind/image/upload/c_fill,w_250,h_250,g_center/c_fill,dpr_2.0,f_auto,g_center,q_auto:good/v1/gcs/platform-data-goog/avatars/keerthi_kumar_m_ZPXzogM.png",
+    image: "Karthik.JPG",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/karthik-raju-arajyula-55285b28a/",
       github: "#"
     },
     colors: {
@@ -17,9 +17,9 @@ const team = [
   {
     name: "Pavan Kumar",
     role: "Co-organizer",
-    image: "Copy of GDG-Professionals-Social-PhotoFrame-Blue.jpg",
+    image: "PAvan.JPG",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/pavan-kumar-kode-2a7ba52a6/",
       github: "#"
     },
     colors: {
@@ -27,11 +27,11 @@ const team = [
     }
   },
   {
-    name: "Nikhil Enjirapu",
+    name: "Maneeswar Reddy",
     role: "UI/UX Lead",
-    image: "https://res.cloudinary.com/startup-grind/image/upload/c_fill,w_250,h_250,g_center/c_fill,dpr_2.0,f_auto,g_center,q_auto:good/v1/gcs/platform-data-goog/avatars/nikhil_enjirapu_HDs9lw2.jpg",
+    image: "Mani.JPG",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/veeramaneeswarreddy-gadikota-510067374/",
       github: "#"
     },
     colors: {
@@ -39,7 +39,19 @@ const team = [
     }
   },
   {
-    name: "G. Lakshmi Narasimha Yadav",
+    name: "Bharath Kumar",
+    role: "Open-Source Contributer",
+    image: "Bharath.JPG",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/bharath-kumar-inukurthi/",
+      github: "#"
+    },
+    colors: {
+      border1: '#f9ab00'       // Core Yellow for card
+    }
+  },
+  {
+    name: "Neeraj G",
     role: "Graphic Designer",
     image: "https://res.cloudinary.com/startup-grind/image/upload/c_fill,w_250,h_250,g_center/c_fill,dpr_2.0,f_auto,g_center,q_auto:good/v1/gcs/platform-data-goog/avatars/g._lakshmi_narasimha_yadav_NWoGNc1.png",
     socials: {
@@ -52,36 +64,14 @@ const team = [
       nameLabel: '#ffffff'      // White for text
     }
   },
+
+ 
   {
-    name: "Arunkumar S",
-    role: "Web Developer",
-    image: "arunkumar_s_NpHXYnv.webp",
-    socials: {
-      linkedin: "#",
-      github: "#"
-    },
-    colors: {
-      border1: '#4285f4'       // Core Blue for card
-    }
-  },
-  {
-    name: "Suresh Kumar G",
-    role: "Web Developer",
-    image: "suresh_kumar_g_7C1LCFI.webp",
-    socials: {
-      linkedin: "#",
-      github: "#"
-    },
-    colors: {
-      border1: '#ea4335'       // Core Red for card
-    }
-  },
-  {
-    name: "Manoj Hariharan R",
-    role: "Android Development Lead",
+    name: "Jai Harini",
+    role: "Event Manager",
     image: "manoj_hariharan_r_xUNY62k.webp",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/jai-harini-5a17a6322/",
       github: "#"
     },
     colors: {
@@ -89,11 +79,11 @@ const team = [
     }
   },
   {
-    name: "DHATSHINAMOORTHY R",
+    name: "Karthika M",
     role: "Android Developer",
-    image: "dhatshinamoorthy_r.webp",
+    image: "Karthika.JPG",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/karthika-movva-0758a02a7/",
       github: "#"
     },
     colors: {
@@ -105,11 +95,11 @@ const team = [
     }
   },
   {
-    name: "SRAVANTHI U",
+    name: "Akhil Kumar ",
     role: "Content Writer",
-    image: "sravanthi_u_T4DNmp9.webp",
+    image: "Akhil.JPG",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/tellapalli-akhil-kumar-188a0028a/",
       github: "#"
     },
     colors: {
@@ -117,11 +107,11 @@ const team = [
     }
   },
   {
-    name: "NAVEEN S",
+    name: "Vivek G",
     role: "Machine Learning Lead",
-    image: "naveen_s.webp",
+    image: "vivek.JPG",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/gopisetti-vivek-574650300/",
       github: "#"
     },
     colors: {
@@ -129,11 +119,11 @@ const team = [
     }
   },
   {
-    name: "Hitesh Kumar Kothapalli",
+    name: "Nikhil H",
     role: "DevOps Lead",
-    image: "hitesh_kumar_kothapalli.webp",
+    image: "NikhilH.jpg",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/nikhil-h-834592315/",
       github: "#"
     },
     colors: {
@@ -141,11 +131,11 @@ const team = [
     }
   },
   {
-    name: "Barnes Samuel",
-    role: "Media Team",
-    image: "barnes_samuel.webp",
+    name: "Kartheek B",
+    role: "Photography Lead ",
+    image: "Kartheek.JPG",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/venkata-kartheek-balagani-372ab8344/",
       github: "#"
     },
     colors: {
@@ -153,11 +143,11 @@ const team = [
     }
   },
   {
-    name: "Bharathi Ankamreddy",
-    role: "Social Media Lead",
-    image: "bharathi_ankamreddy.webp",
+    name: "Nischal S",
+    role: "Social Media & PR Manager",
+    image: "nischal.JPG",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/nischalst/",
       github: "#"
     },
     colors: {
@@ -169,11 +159,11 @@ const team = [
     }
   },
   {
-    name: "Divya Sri Digamarthi",
+    name: "Rishitha Nallapureddy",
     role: "Cloud Computing Lead",
-    image: "divya_sri_digamarthi.webp",
+    image: "Rishi.JPG",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/rishitha-nallapureddy-4230072a8/",
       github: "#"
     },
     colors: {
@@ -189,7 +179,7 @@ const team = [
     role: "Coordinator",
     image: "gubba_v_sesha_sai_krishna_vineeth.webp",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/krishna-vineeth-gubba/",
       github: "#"
     },
     colors: {
@@ -205,7 +195,7 @@ const team = [
     role: "Coordinator",
     image: "poojith_reddy_menthem_4pB2x3v.webp",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/poojith-reddy-menthem-25219124a/",
       github: "#"
     },
     colors: {
@@ -221,7 +211,7 @@ const team = [
     role: "Coordinator",
     image: "balaji_.n_bzhKrFH.webp",
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/navuluri-balaji/",
       github: "#"
     },
     colors: {
@@ -295,7 +285,8 @@ const TeamMemberCard = ({ member }) => {
                 <img 
                   src={member.image} 
                   alt={member.name}
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: '50% 40%' }}
                 />
               ) : (
                 <div 
