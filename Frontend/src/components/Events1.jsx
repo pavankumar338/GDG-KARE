@@ -93,9 +93,9 @@ const ImageCarousel = ({ images }) => {
   }, []);
 
   return (
-    <div className="w-full h-[80vh] md:h-screen relative overflow-hidden">
+    <div className="w-full min-h-[60vh] md:min-h-[70vh] relative overflow-hidden" style={{ touchAction: 'pan-y' }}>
       {/* Subtle gradient overlay for text readability while preserving image visibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/30 z-5"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/30 z-10 pointer-events-none"></div>
       
       {/* Hero Text Overlay with Framer Motion */}
       <motion.div 
@@ -128,7 +128,7 @@ const ImageCarousel = ({ images }) => {
           index === activeIndex && (
             <motion.div 
               key={index}
-              className="absolute inset-0 h-full w-full"
+              className="absolute inset-0 h-full w-full pointer-events-none"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
