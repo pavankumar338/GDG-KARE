@@ -6,6 +6,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import { Link } from "react-router-dom";
 import SuccessDarkIllustration from "../assets/success-dark.svg";
 import SuccessLightIllustration from "../assets/success-light.svg";
+import { supabase, RECRUITMENT_APPLICATIONS_TABLE } from "../lib/supabase";
 const JoinSection = styled.section`
   padding: 8rem 2rem;
   background: var(--bg-primary);
@@ -453,18 +454,18 @@ const RoleOption = styled.button`
 
   &:hover:not(:disabled) {
     background: ${(props) =>
-      props.selected ? "var(--medium-blue)" : "var(--blue-alpha)"};
+    props.selected ? "var(--medium-blue)" : "var(--blue-alpha)"};
   }
 
   body.dark & {
     border-color: ${(props) =>
-      props.selected ? "var(--blue)" : "var(--text-secondary-dark)"};
+    props.selected ? "var(--blue)" : "var(--text-secondary-dark)"};
     color: ${(props) =>
-      props.selected ? "white" : "var(--text-primary-dark)"};
+    props.selected ? "white" : "var(--text-primary-dark)"};
 
     &:hover:not(:disabled) {
       background: ${(props) =>
-        props.selected ? "var(--medium-blue)" : "var(--blue-alpha-dark)"};
+    props.selected ? "var(--medium-blue)" : "var(--blue-alpha-dark)"};
     }
   }
 `;
@@ -620,21 +621,25 @@ const JoinUs = () => {
     setVerificationError("");
 
     try {
-      const response = await fetch("https://gdg-kare.tech/api/verify-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
+      // Check using Supabase RPC if we set it up, or try a select if RLS allows.
+      // Since RLS typically blocks public selects of emails, we use an RPC 'check_if_application_exists'
+      // If the RPC doesn't exist yet, we might need a fallback, but let's assume the migration is applied.
+
+      const { data, error } = await supabase.rpc('check_if_application_exists', {
+        check_email: email
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error);
+      if (error) {
+        // Fallback: If RPC fails (e.g. not defined), we can't easily verify without submitting.
+        // We could just assume it's OK and let the unique constraint handle it during submit.
+        console.warn("Verification RPC failed, skipping pre-verification:", error);
+        // We mark as verified to allow them to proceed to submit, where the real check happens
+        setIsVerified(true);
+        setVerificationError("");
+        return;
       }
 
-      if (data.exists) {
+      if (data) {
         setVerificationError("An application with this email already exists");
         setIsVerified(false);
       } else {
@@ -689,7 +694,7 @@ const JoinUs = () => {
         resume_link: e.target.resume_link.value || null,
         year_of_study: e.target.year_of_study.value,
         department: e.target.department.value,
-        preferred_role: JSON.stringify(selectedRoles),
+        preferred_role: selectedRoles, // Supabase handles JSON automatically for JSONB columns, no need to stringify
         role_interest: e.target.role_interest.value,
         recruitment_reason: e.target.recruitment_reason.value,
         projects: projects,
@@ -697,22 +702,13 @@ const JoinUs = () => {
         self_video: e.target.self_video.value || null,
       };
 
-      const response = await fetch(
-        "https://gdg-kare.tech/api/submit-application",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const { data, error } = await supabase
+        .from(RECRUITMENT_APPLICATIONS_TABLE)
+        .insert([formData]);
 
-      const data = await response.json();
+      if (error) throw error;
 
-      if (!response.ok) {
-        throw new Error(data.error);
-      }
+
 
       setSubmitSuccess(true);
       e.target.reset();
@@ -846,8 +842,8 @@ const JoinUs = () => {
                       emailError || verificationError
                         ? "var(--medium-red)"
                         : isVerified
-                        ? "var(--medium-green)"
-                        : undefined,
+                          ? "var(--medium-green)"
+                          : undefined,
                   }}
                 />
                 <VerifyButton

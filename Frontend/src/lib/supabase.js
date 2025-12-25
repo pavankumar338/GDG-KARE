@@ -19,3 +19,4 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 // The migration creates both `ml_registrations` (recommended) and a legacy
 // quoted table "ml-registrations"; prefer the underscored name in code.
 export const ML_REGISTRATIONS_TABLE = 'ml_registrations'
+export const RECRUITMENT_APPLICATIONS_TABLE = 'recruitment_applications'

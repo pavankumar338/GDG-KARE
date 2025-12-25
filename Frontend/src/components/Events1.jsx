@@ -94,7 +94,7 @@ const ImageCarousel = ({ images }) => {
   }, []);
 
   return (
-    <div className="w-full h-screen relative overflow-x-hidden" style={{ touchAction: 'pan-y' }}>
+    <div className="w-full h-[calc(100dvh-4rem)] relative overflow-x-hidden" style={{ touchAction: 'pan-y' }}>
       {/* Enhanced gradient overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/40 z-10 pointer-events-none"></div>
 
