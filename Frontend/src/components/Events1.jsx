@@ -93,7 +93,7 @@ const ImageCarousel = ({ images }) => {
   }, []);
 
   return (
-    <div className="w-full min-h-[60vh] md:min-h-[70vh] relative overflow-hidden" style={{ touchAction: 'pan-y' }}>
+    <div className="w-full min-h-[60vh] md:min-h-[70vh] relative overflow-x-hidden" style={{ touchAction: 'pan-y' }}>
       {/* Subtle gradient overlay for text readability while preserving image visibility */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/30 z-10 pointer-events-none"></div>
       

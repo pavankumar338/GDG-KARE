@@ -112,22 +112,16 @@ const Events = () => {
         <div className="w-full max-w-7xl mx-auto px-4">
           <h2 className="text-5xl font-bold text-center mb-16 text-[#4285F4] py-8">Past Events</h2>
           
-          {/* Mobile/Tablet: Horizontal scroll (non-locking) */}
+          {/* Mobile/Tablet: Horizontal scroll (non-locking, no snap) */}
           <div className="lg:hidden relative">
             <div
-              className="flex overflow-x-auto gap-4 md:gap-8 px-2 md:px-4 horizontal-scroll"
-              style={{ 
-                scrollSnapType: "x proximity",
-                WebkitOverflowScrolling: "touch",
-                overscrollBehaviorX: "auto",
-                overscrollBehaviorY: "auto",
-                touchAction: "pan-y"
-              }}
+              className="flex overflow-x-auto gap-4 md:gap-8 px-2 md:px-4 horizontal-scroll snap-none"
+              style={{ touchAction: "pan-y" }}
             >
               {events.map((event, index) => (
                 <motion.div
                   key={index}
-                  className="min-w-[85vw] md:min-w-[80vw] snap-center"
+                  className="min-w-[80vw] md:min-w-[70vw]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
