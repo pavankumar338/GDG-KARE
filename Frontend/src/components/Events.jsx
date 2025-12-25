@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const events = [
     {
@@ -73,6 +73,7 @@ const Events = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dragStartX, setDragStartX] = useState(null);
   const [dragging, setDragging] = useState(false);
+  const desktopCarouselRef = useRef(null);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % events.length);
@@ -105,6 +106,13 @@ const Events = () => {
     setDragStartX(null);
   };
 
+  // Prevent wheel scroll from hijacking carousel on desktop
+  const handleWheel = (e) => {
+    if (!dragging) {
+      e.stopPropagation();
+    }
+  };
+
   return (
   <div className="min-h-screen bg-white dark:bg-[#202124]">
       {/* Events Carousel Section */}
@@ -116,7 +124,12 @@ const Events = () => {
           <div className="lg:hidden relative">
             <div
               className="flex overflow-x-auto gap-4 md:gap-8 px-2 md:px-4 horizontal-scroll snap-none"
-              style={{ touchAction: "pan-y" }}
+              style={{ 
+                touchAction: "pan-y",
+                overscrollBehaviorX: "contain",
+                overscrollBehaviorY: "auto",
+                WebkitOverflowScrolling: "touch"
+              }}
             >
               {events.map((event, index) => (
                 <motion.div
@@ -126,13 +139,13 @@ const Events = () => {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <div className="flex flex-col gap-6 items-start">
+                  <div className="flex flex-col gap-6 items-start" style={{ touchAction: "pan-y" }}>
                     <div className="w-full">
                       <div className="aspect-[4/5] relative">
                         <img
                           src={event.image}
                           alt={event.title}
-                          className="absolute inset-0 w-full h-full object-cover rounded-lg"
+                          className="absolute inset-0 w-full h-full object-cover rounded-lg pointer-events-none"
                         />
                       </div>
                     </div>
@@ -172,11 +185,13 @@ const Events = () => {
           {/* Desktop: Single event carousel with navigation and mouse drag */}
           <div className="hidden lg:block relative">
             <div
+              ref={desktopCarouselRef}
               className="overflow-hidden"
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseLeave}
-              style={{ cursor: dragging ? 'grabbing' : 'grab' }}
+              onWheel={handleWheel}
+              style={{ cursor: dragging ? 'grabbing' : 'grab', touchAction: 'none' }}
             >
               <motion.div
                 className="flex transition-transform duration-500 ease-in-out"
