@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const events = [
-    {
+  {
     title: "Agent-Speak",
     date: "August 15, 2025",
     description: "Join us for a 3-day immersive workshop designed to introduce and upskill participants in the evolving fields of Generative and Agentic AI. This event is ideal for developers, students, and AI enthusiasts who are curious about how modern AI models are built, fine-tuned, and deployed into real-world applications. Each day is structured to progressively deepen your understanding, starting from foundational concepts, moving into powerful AI frameworks, and concluding with building intelligent, task-performing agents.",
@@ -11,7 +11,7 @@ const events = [
     attendees: "150+",
     link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-agent-speak/"
   },
-     {
+  {
     title: "Basics of Github",
     date: "August 5-7, 2025",
     description: "Unlock the essentials of version control with our 'Introduction to Git and GitHub' workshop. This three-day event is a must-attend for any aspiring developer or technology enthusiast looking to gain a competitive edge. Join us from 5th to 7th August, from 5 PM to 6 PM in 8301 lab, Kalasalingam University, to learn from two of your own, as they guide you through setting up Git and GitHub, executing basic operations, understanding branches and workflows, and mastering the basics of the most important skill wherever you go in the tech industry. ",
@@ -31,7 +31,7 @@ const events = [
   },
   {
     title: "Study Jams Session - 1",
-    date: "November 5, 2024", 
+    date: "November 5, 2024",
     description: "Join us in progressing through the GenAI Study Jams!Let's meet-up and walk through the courses together. Got questions about Study Jams? This is the place to ask.We have competitions and rewards! Let's find out which one of you is the fastest!",
     image: "/Copy of GDG24 Signage Poster - Yellow (1).jpg",
     category: "Workshop",
@@ -46,7 +46,8 @@ const events = [
     image: "Copy of GDG24 Signage Poster - Green (2).jpg",
     category: "Competition",
     attendees: "200+",
-    link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-prompt-engineering/"},
+    link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-prompt-engineering/"
+  },
   {
     title: "G2 HACKFEST",
     date: "March 29, 2025",
@@ -56,7 +57,7 @@ const events = [
     attendees: "300+",
     link: "https://gdg.community.dev/events/details/google-gdg-on-campus-kalasalingam-academy-of-research-education-krishnankoil-india-presents-g2hackfest/"
   },
-    {
+  {
     title: "Google Solution Challenge",
     date: "February 22, 2025",
     description: "Next-Gen Legacy Modernization: GenAI, Kubernetes, and Google Cloud in Action explores how cutting-edge AI, containerization, and cloud-native solutions can transform legacy systems. This session will dive into leveraging GenAI for code refactoring, Kubernetes (GKE) for scalable modernization, and Google Cloud for seamless migration and optimization",
@@ -73,7 +74,6 @@ const Events = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dragStartX, setDragStartX] = useState(null);
   const [dragging, setDragging] = useState(false);
-  const desktopCarouselRef = useRef(null);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % events.length);
@@ -106,46 +106,40 @@ const Events = () => {
     setDragStartX(null);
   };
 
-  // Prevent wheel scroll from hijacking carousel on desktop
-  const handleWheel = (e) => {
-    if (!dragging) {
-      e.stopPropagation();
-    }
-  };
-
   return (
-  <div className="min-h-screen bg-white dark:bg-[#202124]">
+    <div className="min-h-screen bg-white dark:bg-[#202124]">
       {/* Events Carousel Section */}
-  <div className="py-16">
+      <div className="py-16">
         <div className="w-full max-w-7xl mx-auto px-4">
           <h2 className="text-5xl font-bold text-center mb-16 text-[#4285F4] py-8">Past Events</h2>
-          
-          {/* Mobile/Tablet: Horizontal scroll (non-locking, no snap) */}
+
+          {/* Mobile/Tablet: Horizontal scroll */}
           <div className="lg:hidden relative">
             <div
-              className="flex overflow-x-auto gap-4 md:gap-8 px-2 md:px-4 horizontal-scroll snap-none"
-              style={{ 
-                touchAction: "pan-y",
+              className="flex overflow-x-auto scrollbar-hide gap-8 px-4 horizontal-scroll"
+              style={{
+                scrollSnapType: "x mandatory",
+                WebkitOverflowScrolling: "touch",
                 overscrollBehaviorX: "contain",
-                overscrollBehaviorY: "auto",
-                WebkitOverflowScrolling: "touch"
+                touchAction: "pan-x pan-y"
               }}
             >
               {events.map((event, index) => (
                 <motion.div
                   key={index}
-                  className="min-w-[80vw] md:min-w-[70vw]"
+                  className="min-w-[90vw] md:min-w-[80vw] snap-center"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <div className="flex flex-col gap-6 items-start" style={{ touchAction: "pan-y" }}>
+                  <div className="flex flex-col gap-6 items-start">
                     <div className="w-full">
                       <div className="aspect-[4/5] relative">
                         <img
                           src={event.image}
                           alt={event.title}
-                          className="absolute inset-0 w-full h-full object-cover rounded-lg pointer-events-none"
+                          draggable={false}
+                          className="absolute inset-0 w-full h-full object-cover rounded-lg"
                         />
                       </div>
                     </div>
@@ -164,10 +158,10 @@ const Events = () => {
                           {event.attendees} Attended
                         </span>
                       </div>
-                      <a 
-                        href={event.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <a
+                        href={event.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="mt-4 px-6 py-2 bg-[#4285F4] hover:bg-[#3367D6] text-white rounded-full transition-all duration-300 flex items-center gap-2 text-lg font-medium w-fit"
                       >
                         Read More
@@ -185,13 +179,14 @@ const Events = () => {
           {/* Desktop: Single event carousel with navigation and mouse drag */}
           <div className="hidden lg:block relative">
             <div
-              ref={desktopCarouselRef}
               className="overflow-hidden"
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseLeave}
-              onWheel={handleWheel}
-              style={{ cursor: dragging ? 'grabbing' : 'grab', touchAction: 'none' }}
+              style={{
+                cursor: dragging ? 'grabbing' : 'grab',
+                touchAction: "pan-y"
+              }}
             >
               <motion.div
                 className="flex transition-transform duration-500 ease-in-out"
@@ -205,6 +200,7 @@ const Events = () => {
                           <img
                             src={event.image}
                             alt={event.title}
+                            draggable={false}
                             className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg"
                           />
                         </div>
@@ -224,10 +220,10 @@ const Events = () => {
                             {event.attendees} Attended
                           </span>
                         </div>
-                        <a 
-                          href={event.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
+                        <a
+                          href={event.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="mt-6 px-8 py-3 bg-[#4285F4] hover:bg-[#3367D6] text-white rounded-full transition-all duration-300 flex items-center gap-3 text-lg font-medium w-fit"
                         >
                           Read More
@@ -248,9 +244,8 @@ const Events = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex ? 'bg-[#4285F4] w-8' : 'bg-gray-300'
-                  }`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-[#4285F4] w-8' : 'bg-gray-300'
+                    }`}
                 />
               ))}
             </div>

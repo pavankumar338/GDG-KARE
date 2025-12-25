@@ -123,8 +123,9 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* Allow horizontal scrolling for specific elements */
-.horizontal-scroll {
-  touch-action: pan-x !important;
+/* Allow horizontal scrolling for specific elements while preserving vertical page scroll - applied to children to override global blocked axis */
+.horizontal-scroll, .horizontal-scroll * {
+  touch-action: pan-y pan-x !important;
 }
 
 /* Hide scrollbars while maintaining functionality */
