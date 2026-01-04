@@ -42,7 +42,7 @@ const EventsContainer = styled.div`
   max-width: 100%;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2rem 0;
   
   @media (min-width: 768px) {
     padding: 4rem 2rem;
@@ -176,7 +176,7 @@ const ImageCarousel = ({ images }) => {
 const EventsContent = () => {
   return (
     <motion.div
-      className="py-8 px-4"
+      className="py-8 px-0 md:px-4"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

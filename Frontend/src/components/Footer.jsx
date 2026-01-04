@@ -31,7 +31,7 @@ const FooterContent = styled.div`
 const FooterSection = styled.div`
   h3 {
     color: ${(props) =>
-      props.$isDark ? "var(--light-blue)" : "var(--medium-blue)"};
+    props.$isDark ? "var(--light-blue)" : "var(--medium-blue)"};
     margin-bottom: 1rem;
     font-size: 1.2rem;
     font-weight: 600;
@@ -55,7 +55,7 @@ const StyledSocialIcon = styled.a`
 
   &:hover {
     color: ${(props) =>
-      props.$isDark ? "var(--light-blue)" : "var(--medium-blue)"};
+    props.$isDark ? "var(--light-blue)" : "var(--medium-blue)"};
   }
 `;
 
@@ -84,15 +84,15 @@ const StyledQuickLink = styled(Link)`
 
   &:hover {
     color: ${(props) =>
-      props.$isDark ? "var(--light-blue)" : "var(--medium-blue)"};
+    props.$isDark ? "var(--light-blue)" : "var(--medium-blue)"};
   }
 `;
 
 const QuickLink = ({ to, children, isDark }) => {
   return (
-    <motion.div 
-      whileHover={{ x: 5 }} 
-      transition={{ 
+    <motion.div
+      whileHover={{ x: 5 }}
+      transition={{
         duration: 0.2,
         ease: [0.4, 0, 0.2, 1]
       }}
@@ -119,6 +119,10 @@ const Footer = () => {
       path: "/",
     },
     {
+      name: "About",
+      path: "/about",
+    },
+    {
       name: "Events",
       path: "/events",
     },
@@ -140,7 +144,7 @@ const Footer = () => {
     },
     {
       icon: FaLinkedin,
-      url: "https://www.linkedin.com/company/gdsc-kare",
+      url: "https://www.linkedin.com/company/gdg-kare/",
       label: "LinkedIn",
     },
     {
@@ -159,7 +163,7 @@ const Footer = () => {
       label: "YouTube",
     },
   ];
-  
+
 
   return (
     <FooterContainer $isDark={isDark}>

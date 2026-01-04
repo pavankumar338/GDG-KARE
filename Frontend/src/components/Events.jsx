@@ -110,8 +110,8 @@ const Events = () => {
     <div className="min-h-screen bg-white dark:bg-[#202124]">
       {/* Events Carousel Section */}
       <div className="py-16">
-        <div className="w-full max-w-7xl mx-auto px-4">
-          <h2 className="text-5xl font-bold text-center mb-16 text-[#4285F4] py-8">Past Events</h2>
+        <div className="w-full max-w-7xl mx-auto md:px-4">
+          <h2 className="text-5xl font-bold text-center mb-16 text-[#4285F4] py-8 px-4 md:px-0">Past Events</h2>
 
           {/* Mobile/Tablet: Horizontal scroll */}
           <div className="lg:hidden relative">

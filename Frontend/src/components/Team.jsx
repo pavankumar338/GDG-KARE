@@ -20,7 +20,7 @@ const team = [
     image: "PAvan.JPG",
     socials: {
       linkedin: "https://www.linkedin.com/in/pavan-kumar-kode-2a7ba52a6/",
-      github: "#"
+      github: "https://github.com/pavankumar338"
     },
     colors: {
       border1: '#ea4335'       // Core Red for card
@@ -65,7 +65,7 @@ const team = [
     }
   },
 
- 
+
   {
     name: "Jai Harini",
     role: "Event Manager",
@@ -100,7 +100,7 @@ const team = [
     image: "Akhil.JPG",
     socials: {
       linkedin: "https://www.linkedin.com/in/tellapalli-akhil-kumar-188a0028a/",
-      github: "#"
+      github: "https://github.com/tellapallyakhil?"
     },
     colors: {
       border1: '#4285f4'       // Core Blue for card
@@ -226,7 +226,7 @@ const team = [
 
 const SocialIcon = ({ socialLink }) => {
   const iconSize = 20;
-  
+
   const getIcon = () => {
     switch (socialLink.platform) {
       case 'twitter':
@@ -260,20 +260,20 @@ const getInitials = (name) => {
   if (!name) return '';
   const nameParts = name.split(' ').filter(part => part.length > 0);
   if (nameParts.length === 0) return '';
-  
+
   if (nameParts.length === 1) {
     return nameParts[0].charAt(0).toUpperCase();
   }
-  
+
   return nameParts[0].charAt(0).toUpperCase() + nameParts[nameParts.length - 1].charAt(0).toUpperCase();
 };
 
 const TeamMemberCard = ({ member }) => {
   return (
-    <div 
+    <div
       className="relative w-full max-w-sm mx-auto transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
     >
-      <div 
+      <div
         className="relative p-6 rounded-3xl shadow-xl transition-transform duration-300 bg-white dark:bg-gray-800 h-[350px] flex flex-col border-2 border-black"
       >
         {/* Card content */}
@@ -282,14 +282,14 @@ const TeamMemberCard = ({ member }) => {
           <div className="relative mb-4">
             <div className="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg" style={{ backgroundColor: '#2a2a2a' }}>
               {member.image ? (
-                <img 
-                  src={member.image} 
+                <img
+                  src={member.image}
                   alt={member.name}
                   className="w-full h-full object-cover"
                   style={{ objectPosition: '50% 40%' }}
                 />
               ) : (
-                <div 
+                <div
                   className="w-full h-full flex items-center justify-center text-white font-bold text-2xl"
                   style={{ backgroundColor: '#2a2a2a' }}
                 >
@@ -346,13 +346,13 @@ const TeamMemberCard = ({ member }) => {
 
 const TeamSection = () => {
   // Separate team members into different groups
-  const organizers = team.filter(member => 
+  const organizers = team.filter(member =>
     member.role === "Organizer" || member.role === "Co-organizer"
   );
   const coordinators = team.filter(member => member.role === "Coordinator");
-  const otherMembers = team.filter(member => 
-    member.role !== "Coordinator" && 
-    member.role !== "Organizer" && 
+  const otherMembers = team.filter(member =>
+    member.role !== "Coordinator" &&
+    member.role !== "Organizer" &&
     member.role !== "Co-organizer"
   );
 
@@ -364,7 +364,7 @@ const TeamSection = () => {
           Meet our passionate team of organizers dedicated to building and nurturing the Google Developer Group in Kare.
         </p>
       </div>
-      
+
       {/* Organizers Section */}
       <div className="mb-24">
         <h3 className="text-3xl font-bold mb-12 text-center text-[#4285F4]">Our Organizers</h3>
